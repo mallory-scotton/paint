@@ -60,41 +60,13 @@ status window_init(void)
     Win = malloc(sizeof(global_window_t));
     RETURN(Win == NULL, fail);
     Win->self = sfRenderWindow_create(WIN_MODE, WIN_TITLE, WIN_STYLE, NULL);
-    Win->view = sfView_createFromRect((rectf){0, 0, VIEW_WIDTH, VIEW_HEIGHT});
     RETURN(Win->self == NULL, fail);
-    if (Win->view == NULL) {
-        sfRenderWindow_destroy(Win->self);
-        FREE(Win);
-        return (fail);
-    }
-    sfRenderWindow_setView(Win->self, Win->view);
-    sfView_setCenter(Win->view, VEC2(VIEW_WIDTH / 2.0f, VIEW_HEIGHT / 2.0f));
     DOIF(WIN_ICON != NULL, window_init_icon());
     sfRenderWindow_setFramerateLimit(Win->self, WIN_FPS);
     RETURN(WIN_CENTERED == false, success);
     sfRenderWindow_setPosition(Win->self, VEC2I(MID(screen.width, WIN_WIDTH),
         MID(screen.height, WIN_HEIGHT)));
     return (success);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Update the main window dimensions.
-///
-/// This function retrieves the current size of the main window using
-/// sfRenderWindow_getSize, and ensures that it falls within the specified
-/// minimum and maximum dimensions. If the size is outside this range,
-/// it is clamped to the valid range using the CLAMP macro. The updated size
-/// is then applied to the window using sfRenderWindow_setSize.
-///
-/// \param size     The resized event value
-///
-///////////////////////////////////////////////////////////////////////////////
-void window_update(sfSizeEvent size)
-{
-    float factor = (float)((float)VIEW_WIDTH / (float)size.width);
-
-    sfView_setSize(Win->view, VEC2(VIEW_WIDTH, size.height * factor));
-    sfRenderWindow_setView(Win->self, Win->view);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -110,6 +82,5 @@ void window_destroy(void)
 {
     RETURN(Win == NULL, (void)0);
     DOIF(Win->self != NULL, sfRenderWindow_destroy(Win->self));
-    DOIF(Win->view != NULL, sfView_destroy(Win->view));
     FREE(Win);
 }

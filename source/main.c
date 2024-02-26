@@ -16,10 +16,10 @@ int print_help(void)
 
 int main(int argc, warray argv)
 {
-    if (argc == 2)
-        RETURN(my_strcmp(argv[1], "--help") == 0, print_help());
+    RETURN(argc == 2 && my_strcmp(argv[1], "--help") == 0, print_help());
     window_init();
     time_init();
+    loop();
     window_destroy();
     time_destroy();
     return 0;

@@ -29,7 +29,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct global_window_s {
     sfRenderWindow *self;
-    sfView *view;
     vec2u size;
     bool isFullscreen;
 } global_window_t;

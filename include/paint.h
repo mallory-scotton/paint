@@ -19,4 +19,8 @@
     #include "paint/global.h"
     #include "configuration.h"
 
+void events(void);
+void loop(void);
+void get_rec(float thick, sfVector2f pos, sfVector2f size);
+
 #endif /* !PAINT_H_ */
