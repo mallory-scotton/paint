@@ -79,7 +79,7 @@ typedef struct widget_s {
     sfColor backgroundColor;
     input_t **inputs;
     uint inputCount;
-    element_t *elements;
+    element_t **elements;
     uint elementCount;
     void (*customDraw)(widget_t *wid);
     bool hasCustomDraw;

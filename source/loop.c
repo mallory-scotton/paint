@@ -32,17 +32,36 @@ void test(void)
     Widgets[e_widget_toolbar]->backgroundColor = sfWhite;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Calls the appropriate function based on the selected tool.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
+static void use_tool(void)
+{
+    DOIF(Tool->type == e_tool_pencil, use_pencil_tool());
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief The main loop of the program.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
 void loop(void)
 {
     Canvas = NULL;
-    canvas_add(500, 500, "TEST_CANVAS");
+    canvas_add(500, 500, "TEST_CANVAS", sfWhite);
+    Tool->canva = Canvas;
     test();
     while (sfRenderWindow_isOpen(Win->self)) {
         events();
         sfRenderWindow_clear(Win->self, sfColor_fromRGB(237, 244, 248));
+        DOIF(Tool->mousePressed, use_tool());
         for (uint i = 0; i < WIDGET_COUNT; i++)
             widget_draw(Widgets[i]);
-        canvas_draw(Canvas, VEC2(500, 500), VEC2(1.0f, 1.0f));
+        canvas_draw(Tool->canva);
         sfRenderWindow_display(Win->self);
     }
 }

@@ -13,21 +13,132 @@
 ///////////////////////////////////////////////////////////////////////////////
     #include "paint.h"
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Definition of the mathematical constant PI.
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define PI 3.14159265358979323846
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Converts degrees to radians.
+///
+/// \param angle The angle in degrees.
+///
+/// \return The equivalent angle in radians.
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define DEG_TO_RAD(angle) (angle * PI / 180.0)
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Converts radians to degrees.
+///
+/// \param angle The angle in radians.
+///
+/// \return The equivalent angle in degrees.
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define RAD_TO_DEG(angle) (angle * 180.0 / M_PI)
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Converts a vector to a 2D vector.
+///
+/// \param vec The original vector.
+///
+/// \return A 2D vector with the same x and y components.
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define TV2(vec) VEC2(vec.x, vec.y)
+
 typedef struct canvas_s canvas_t;
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Definition of the canvas structure.
+///
+/// The canvas structure represents an image or drawing area in the paint
+/// application.
+///
+///////////////////////////////////////////////////////////////////////////////
 typedef struct canvas_s {
     string name;
     string path;
     uint width;
     uint height;
     bool saved;
+    vec2f position;
+    vec2f scale;
+    sfColor baseColor;
     sfUint8 *pixels;
     canvas_t *next;
 } canvas_t;
 
+/// Enumeration of tool types.
+typedef enum tool_type_e {
+    e_tool_eraser,
+    e_tool_pencil,
+    e_tool_bucket,
+    TOOL_COUNT
+} tool_type_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Definition of the tool structure.
+///
+/// The tool structure represents a drawing tool in the paint application.
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct tool_s {
+    uint thickness;
+    tool_type_t type;
+    sfColor color;
+    canvas_t *canva;
+    bool mousePressed;
+    vec2i mousePos;
+    vec2i oldMousePos;
+    bool wasMousePressed;
+} tool_t;
+
+/// Pointer to the active canvas list.
 extern canvas_t *Canvas;
 
-void canvas_add(uint width, uint height, string name);
-void canvas_draw(canvas_t *c, vec2f pos, vec2f scale);
+/// Pointer to the active tool.
+extern tool_t *Tool;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Adds a new canvas to the paint application.
+///
+/// \param width The width of the new canvas.
+/// \param height The height of the new canvas.
+/// \param name The name of the new canvas.
+/// \param baseColor The base color of the new canvas.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
+void canvas_add(uint width, uint height, string name, sfColor baseColor);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws the active canvas on the window.
+///
+/// \param c Pointer to the canvas to be drawn.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
+void canvas_draw(canvas_t *c);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Initializes the paint application's drawing tool.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
+void tool_init(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Handles drawing using the pencil tool.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
+void use_pencil_tool(void);
 
 #endif /* !CANVAS_H_ */
