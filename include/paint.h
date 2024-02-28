@@ -16,11 +16,12 @@
     #include "paint/utils.h"
     #include "paint/libmy.h"
     #include "paint/macros.h"
+    #include "paint/widgets.h"
+    #include "paint/canvas.h"
     #include "paint/global.h"
     #include "configuration.h"
 
 void events(void);
 void loop(void);
-void get_rec(float thick, sfVector2f pos, sfVector2f size);
 
 #endif /* !PAINT_H_ */
