@@ -221,4 +221,6 @@
 ///////////////////////////////////////////////////////////////////////////////
     #define CMP(x, y) (my_strcmp(x, y) == 0)
 
+    #define PRESSED(x) sfKeyboard_isKeyPressed(x)
+
 #endif /* !MACROS_H_ */

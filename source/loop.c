@@ -44,6 +44,22 @@ static void use_tool(void)
     DOIF(Tool->type == e_tool_eraser, use_eraser_tool());
 }
 
+static void draw_cursor(void)
+{
+    sfCircleShape *c = sfCircleShape_create();
+    int th = Tool->thickness * Tool->canva->scale.x;
+    int r = (th / 2) == 0 ? 1 : (th / 2);
+
+    sfCircleShape_setRadius(c, r);
+    sfCircleShape_setOutlineThickness(c, 1.5f);
+    sfCircleShape_setOutlineColor(c, sfColor_fromRGB(150, 150, 150));
+    sfCircleShape_setFillColor(c, sfTransparent);
+    sfCircleShape_setOrigin(c, VEC2(r, r));
+    sfCircleShape_setPosition(c, TV2(Tool->mousePos));
+    sfRenderWindow_drawCircleShape(Win->self, c, NULL);
+    sfCircleShape_destroy(c);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief The main loop of the program.
 ///
@@ -53,9 +69,9 @@ static void use_tool(void)
 void loop(void)
 {
     Canvas = NULL;
-    canvas_add(1920, 1080, "TEST_CANVAS", sfWhite);
-    Canvas->position = VEC2(0, 0);
+    canvas_add(1280, 720, "TEST_CANVAS", sfWhite);
     Tool->canva = Canvas;
+    sfRenderWindow_setMouseCursorVisible(Win->self, false);
     while (sfRenderWindow_isOpen(Win->self)) {
         events();
         sfRenderWindow_clear(Win->self, sfColor_fromRGB(237, 244, 248));
@@ -63,6 +79,7 @@ void loop(void)
         for (uint i = 0; i < WIDGET_COUNT; i++)
             widget_draw(Widgets[i]);
         canvas_draw(Tool->canva);
+        draw_cursor();
         sfRenderWindow_display(Win->self);
     }
 }

@@ -31,8 +31,8 @@ static void draw_pts_loop(int x, int y, int i, int j)
     ulong idx;
 
     RETURN(!(SQUARE(i - x) + SQUARE(j - y) <= SQUARE(r)), (void)0);
-    RETURN(!(i >= 0 && i < (int)c->width &&
-        j >= 0 && j < (int)c->height), (void)0);
+    RETURN(!(i >= 0 && i < (int)(c->width) &&
+        j >= 0 && j < (int)(c->height)), (void)0);
     idx = (ulong)(i + j * c->width) * 4;
     c->pixels[idx] = Tool->color.r;
     c->pixels[idx + 1] = Tool->color.g;
@@ -109,8 +109,13 @@ static void bresenham_line(int x0, int y0, int x1, int y1)
 ///////////////////////////////////////////////////////////////////////////////
 void use_pencil_tool(void)
 {
-    vec2f start = Vec2.subtract(TV2(Tool->oldMousePos), Tool->canva->position);
-    vec2f end = Vec2.subtract(TV2(Tool->mousePos), Tool->canva->position);
+    canvas_t *c = Tool->canva;
+    vec2f pos = VEC2(Tool->canva->position.x - ((c->width * c->scale.x) / 2),
+        c->position.y - ((c->height * c->scale.y) / 2));
+    vec2f start = Vec2.subtract(TV2(Tool->oldMousePos), pos);
+    vec2f end = Vec2.subtract(TV2(Tool->mousePos), pos);
 
+    start = Vec2.divide(start, Tool->canva->scale.x);
+    end = Vec2.divide(end, Tool->canva->scale.x);
     bresenham_line((int)start.x, (int)start.y, (int)end.x, (int)end.y);
 }

@@ -34,7 +34,7 @@ void canvas_add(uint width, uint height, string name, sfColor baseColor)
     new->saved = false;
     new->path = NULL;
     new->baseColor = baseColor;
-    new->position = VEC2(200.0f, 200.0f);
+    new->position = VEC2(WIN_WIDTH / 2, WIN_HEIGHT / 2);
     new->scale = VEC2(1.0f, 1.0f);
     new->pixels = malloc(sizeof(sfUint8) * (width * height * 4));
     new->next = Canvas;
@@ -65,6 +65,7 @@ void canvas_draw(canvas_t *c)
     sfSprite_setColor(sc, sfColor_fromRGBA(0, 0, 0, 58));
     sfSprite_setPosition(sc, VEC2(c->position.x - 5, c->position.y + 5));
     sfSprite_setScale(sc, c->scale);
+    sfSprite_setOrigin(sc, VEC2(c->width / 2, c->height / 2));
     sfRenderWindow_drawSprite(Win->self, sc, NULL);
     sfSprite_setPosition(sc, c->position);
     sfSprite_setColor(sc, sfColor_fromRGBA(255, 255, 255, 255));
