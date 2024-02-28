@@ -23,7 +23,9 @@ int main(int argc, warray argv)
     RETURN(argc == 2 && my_strcmp(argv[1], "--help") == 0, print_help());
     window_init();
     time_init();
+    widgets_init();
     loop();
+    widgets_destroy();
     window_destroy();
     time_destroy();
     return 0;
