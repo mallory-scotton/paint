@@ -21,7 +21,7 @@
     #define WIN_HEIGHT 1080
     #define WIN_BITS 32
     #define WIN_MODE ((sfVideoMode){WIN_WIDTH, WIN_HEIGHT, WIN_BITS})
-    #define WIN_STYLE (sfResize | sfClose)
+    #define WIN_STYLE (sfClose)
     #define WIN_TITLE "MyPaint"
     #define WIN_FPS 60
     #define WIN_CENTERED true
