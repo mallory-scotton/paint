@@ -41,6 +41,7 @@ void test(void)
 static void use_tool(void)
 {
     DOIF(Tool->type == e_tool_pencil, use_pencil_tool());
+    DOIF(Tool->type == e_tool_eraser, use_eraser_tool());
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -52,9 +53,9 @@ static void use_tool(void)
 void loop(void)
 {
     Canvas = NULL;
-    canvas_add(500, 500, "TEST_CANVAS", sfWhite);
+    canvas_add(1920, 1080, "TEST_CANVAS", sfWhite);
+    Canvas->position = VEC2(0, 0);
     Tool->canva = Canvas;
-    test();
     while (sfRenderWindow_isOpen(Win->self)) {
         events();
         sfRenderWindow_clear(Win->self, sfColor_fromRGB(237, 244, 248));

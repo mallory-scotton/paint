@@ -44,6 +44,10 @@ static void parse_keyboard_events(sfEvent evt)
             Tool->thickness++;
         if (evt.key.code == sfKeySubtract)
             Tool->thickness--;
+        if (evt.key.code == sfKeyE)
+            Tool->type = e_tool_eraser;
+        if (evt.key.code == sfKeyP)
+            Tool->type = e_tool_pencil;
     }
 }
 
