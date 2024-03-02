@@ -20,7 +20,7 @@ void use_eraser_tool(void)
 {
     sfColor tmpColor = Tool->color;
 
-    Tool->color = Tool->canva->baseColor;
+    Tool->color = sfTransparent;
     use_pencil_tool();
     Tool->color = tmpColor;
 }
