@@ -58,7 +58,7 @@ static void parse_keyboard_events(sfEvent evt)
 /// \param scroll The mouse wheel scroll event.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-static void parse_scoll(sfMouseWheelScrollEvent scroll)
+static void parse_scroll(sfMouseWheelScrollEvent scroll)
 {
     canvas_t *c = Tool->canva;
     bool ctrl = PRESSED(sfKeyLControl) || PRESSED(sfKeyRControl);
@@ -98,6 +98,6 @@ void events(void)
         parse_mouse_events(evt);
         parse_keyboard_events(evt);
         DOIF(evt.type == sfEvtMouseWheelScrolled,
-            parse_scoll(evt.mouseWheelScroll));
+            parse_scroll(evt.mouseWheelScroll));
     }
 }
