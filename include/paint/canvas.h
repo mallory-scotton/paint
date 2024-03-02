@@ -188,4 +188,17 @@ sfColor getpixel(int x, int y);
 ///////////////////////////////////////////////////////////////////////////////
 void use_bucket_tool(void);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws the transformation rectangle on the canvas.
+///
+/// This function creates, initializes, renders, and then destroys the
+/// transformation rectangle on the canvas. It uses the canvas's size, scale,
+/// and position to determine the appropriate properties of the transformation
+/// shape.
+///
+/// \param c A pointer to the canvas structure.
+///
+///////////////////////////////////////////////////////////////////////////////
+void transform_draw(canvas_t *c);
+
 #endif /* !CANVAS_H_ */
