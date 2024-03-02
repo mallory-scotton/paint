@@ -15,7 +15,7 @@
     #include "paint/types.h"
 
 typedef struct widget_s widget_t;
-typedef struct input_s input_t;
+typedef struct button_s button_t;
 
 typedef enum widget_list_e {
     e_widget_header,
@@ -37,6 +37,7 @@ typedef enum state_e {
 } state_t;
 
 typedef struct button_s {
+    int index;
     vec2f size;
     vec2f pos;
     state_t state;
@@ -48,7 +49,7 @@ typedef struct button_s {
     sfTexture *icon;
     vec2f iconSize;
     vec2f padding;
-    void (*onClick)(void);
+    void (*onClick)(button_t *btn);
 } button_t;
 
 typedef struct widget_s {
@@ -184,6 +185,16 @@ void button_draw(widget_t *wid, button_t *btn);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
-    void (*onClick)(void));
+    void (*onClick)(button_t *btn));
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Initializes the toolbar widget and its buttons.
+///
+/// This function sets up the toolbar widget by defining its size, position,
+/// background color, and visibility. It also creates and configures the
+/// individual buttons on the toolbar.
+///
+///////////////////////////////////////////////////////////////////////////////
+void view_toolbar_init(void);
 
 #endif /* !WIDGETS_H_ */

@@ -108,7 +108,8 @@ void button_draw(widget_t *wid, button_t *btn)
     sfRectangleShape_setFillColor(bck, btn->backgroundColor);
     sfRectangleShape_setPosition(bck, pos);
     button_parse_state(btn, pos, bck);
-    DOIF(btn->state == e_state_hovered && Tool->mousePressed, btn->onClick());
+    DOIF(btn->state == e_state_hovered && Tool->mousePressed,
+        btn->onClick(btn));
     sfRenderWindow_drawRectangleShape(Win->self, bck, NULL);
     DOIF(btn->icon != NULL, button_draw_icon(btn, pos));
     sfRectangleShape_destroy(bck);

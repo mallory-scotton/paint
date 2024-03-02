@@ -73,11 +73,19 @@ typedef struct canvas_s {
 
 /// Enumeration of tool types.
 typedef enum tool_type_e {
-    e_tool_eraser,
-    e_tool_pencil,
-    e_tool_bucket,
+    e_tool_move,
+    e_tool_rectangle_select,
+    e_tool_lasso,
+    e_tool_eyedropper,
     e_tool_brush,
-    e_tool_picker,
+    e_tool_eraser,
+    e_tool_bucket,
+    e_tool_text,
+    e_tool_rectangle,
+    e_tool_hand,
+    e_tool_zoom,
+    e_tool_pencil,
+    e_tool_ellipse_select,
     TOOL_COUNT
 } tool_type_t;
 

@@ -25,7 +25,7 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
-    void (*onClick)(void))
+    void (*onClick)(button_t *btn))
 {
     btn->backgroundColor = sfTransparent;
     btn->hoverBackgroundColor = COLOR_BG_BTN_HOVER;
