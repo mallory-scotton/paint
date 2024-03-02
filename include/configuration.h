@@ -42,7 +42,52 @@
 // ASSETS CONFIGURATION
 
     // DEFAULT ASSETS LOCATION
-    #define ASSETS_PATH "ressources/"
+    #define ASSETS_PATH "assets/"
+
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+// CANVA CONFIGURATION
+
+    #define CANVA_MAX_ZOOM 64.0f
+    #define CANVA_MIN_ZOOM 1 / 128.0f
+    #define MAX_STACK_SIZE 10000000
+
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+// COLOR CONFIGURATION
+
+    #define RGB sfColor_fromRGB
+    #define RGBA sfColor_fromRGBA
+
+    #define COLOR_BASE RGB(71, 71, 71)
+    #define COLOR_BG_PANEL RGB(37, 37, 37)
+    #define COLOR_BG_CANVA RGB(37, 37, 37)
+    #define COLOR_BG_INPUT RGB(37, 37, 37)
+    #define COLOR_BG_BTN RGB(93, 93, 93)
+    #define COLOR_BG_BTN_HOVER RGB(106, 106, 106)
+    #define COLOR_BORDER RGB(37, 37, 37)
+    #define COLOR_TEXT RGB(213, 213, 213)
+    #define COLOR_BORDER_LIGHT RGBA(255, 255, 255, 0.15)
+    #define COLOR_BORDER_DARK RGBA( 0, 0, 0, 0.6)
+    #define COLOR_ACCENT RGB(52, 130, 246)
+    #define COLOR_SH RGBA(0, 0, 0, 0.45)
+
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+// SIZE CONFIGURATION
+
+    #define UI_TOOLBAR_W 60
+    #define UI_PAD MID(60, 46)
+    #define UI_TOOL_W 46
+    #define UI_TOOL_H 46
+    #define UI_TOOL_ICON_W 32
+    #define UI_TOOL_ICON_H 32
+    #define UI_TOOLBAR_H (WIN_HEIGHT - UI_TOOL_H * 2)
+    #define UI_LAYERS_W 300
+    #define UI_LAYERS_H UI_TOOLBAR_H
 
 ///////////////////////////////////////////////////////////////////////////////
 
