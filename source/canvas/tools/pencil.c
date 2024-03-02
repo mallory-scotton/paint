@@ -28,16 +28,11 @@ static void draw_pts_loop(int x, int y, int i, int j)
 {
     canvas_t *c = Tool->canva;
     int r = (Tool->thickness / 2) == 0 ? 1 : (Tool->thickness / 2);
-    ulong idx;
 
     RETURN(!(SQUARE(i - x) + SQUARE(j - y) <= SQUARE(r)), (void)0);
     RETURN(!(i >= 0 && i < (int)(c->width) &&
         j >= 0 && j < (int)(c->height)), (void)0);
-    idx = (ulong)(i + j * c->width) * 4;
-    c->pixels[idx] = Tool->color.r;
-    c->pixels[idx + 1] = Tool->color.g;
-    c->pixels[idx + 2] = Tool->color.b;
-    c->pixels[idx + 3] = Tool->color.a;
+    setpixel(i, j, Tool->color);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
