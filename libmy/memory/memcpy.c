@@ -25,14 +25,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 void *my_memcpy(void *dst, const void *src, ulong n)
 {
-    ulong i = 0;
-    string csrc = (string)src;
-    string cdst = (string)dst;
+    string dstPtr = (string)dst;
+    string srcPtr = (string)src;
 
-    while ((i < n || n == (ulong) - 1) && csrc != NULL && csrc[i]) {
-        cdst[i] = csrc[i];
-        ++i;
-    }
-    cdst[i] = 0;
+    for (ulong i = 0; i < n; i++)
+        dstPtr[i] = srcPtr[i];
     return (dst);
 }
