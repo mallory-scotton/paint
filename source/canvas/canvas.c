@@ -48,6 +48,41 @@ void canvas_add(uint width, uint height, string name, sfColor baseColor)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws a transparent grid on the canvas.
+///
+/// \param c Pointer to the canvas to draw on.
+///
+/// This function draws a transparent grid on the canvas using the specified
+/// texture for transparency. It calculates the necessary parameters, such as
+/// position, scale, and tile size, and then iterates over the grid, drawing
+/// each tile.
+///
+///////////////////////////////////////////////////////////////////////////////
+static void canvas_draw_transparent(canvas_t *c)
+{
+    sfSprite *tran = sfSprite_create();
+    vec2f cover = Vec2.multiply(VEC2(c->width, c->height), c->scale.x);
+    vec2f pos = VEC2(c->position.x - (c->width * c->scale.x) / 2,
+        c->position.y - (c->height * c->scale.y) / 2);
+    vec2i numTiles = VEC2I(cover.x / 16.0f, cover.y / 16.0f);
+    vec2f tileScale = VEC2F(cover.x / (numTiles.x * 16.0f), cover.y /
+        (numTiles.y * 16.0f));
+    vec2f newPos;
+
+    sfSprite_setTexture(tran, Assets[e_assets_transparent], false);
+    sfSprite_setScale(tran, tileScale);
+    for (int x = 0; x < numTiles.x; x++)
+        for (int y = 0; y < numTiles.y; y++) {
+            newPos = VEC2(pos.x + x * 16.0f * tileScale.x,
+                pos.y + y * 16.0f * tileScale.y);
+            sfSprite_setPosition(tran, newPos);
+            DOIF(!(newPos.x < 0 || newPos.x > WIN_WIDTH || newPos.y < 0
+                || newPos.y > WIN_HEIGHT), SPRITE_DRAW(tran));
+        }
+    sfSprite_destroy(tran);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Draws the active canvas on the window.
 ///
 /// \param c Pointer to the canvas to be drawn.
@@ -62,13 +97,10 @@ void canvas_draw(canvas_t *c)
     sfSprite *sc = sfSprite_create();
 
     sfSprite_setTexture(sc, tc, false);
-    sfSprite_setColor(sc, sfColor_fromRGBA(0, 0, 0, 58));
-    sfSprite_setPosition(sc, VEC2(c->position.x - 5, c->position.y + 5));
     sfSprite_setScale(sc, c->scale);
     sfSprite_setOrigin(sc, VEC2(c->width / 2, c->height / 2));
-    sfRenderWindow_drawSprite(Win->self, sc, NULL);
     sfSprite_setPosition(sc, c->position);
-    sfSprite_setColor(sc, sfColor_fromRGBA(255, 255, 255, 255));
+    canvas_draw_transparent(c);
     sfRenderWindow_drawSprite(Win->self, sc, NULL);
     sfSprite_destroy(sc);
     sfTexture_destroy(tc);
