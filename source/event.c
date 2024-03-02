@@ -44,15 +44,23 @@ static void parse_keyboard_events(sfEvent evt)
             Tool->thickness++;
         if (evt.key.code == sfKeySubtract)
             Tool->thickness--;
-        if (evt.key.code == sfKeyE)
-            Tool->type = e_tool_eraser;
-        if (evt.key.code == sfKeyP)
-            Tool->type = e_tool_pencil;
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Parses the mouse wheel scroll event to handle zooming and scrolling.
+///
+/// This function is responsible for interpreting the mouse wheel scroll event
+/// and adjusting the canvas scale and position accordingly for zooming and
+/// scrolling. It takes into account modifier keys (Ctrl and Alt) for different
+/// behaviors.
+///
+/// \param scroll The mouse wheel scroll event.
+///
+///////////////////////////////////////////////////////////////////////////////
 static void parse_scoll(sfMouseWheelScrollEvent scroll)
 {
+    canvas_t *c = Tool->canva;
     bool ctrl = PRESSED(sfKeyLControl) || PRESSED(sfKeyRControl);
     bool alt = PRESSED(sfKeyLAlt) || PRESSED(sfKeyRAlt);
     vec2f mousePosition = TV2(scroll);
@@ -61,9 +69,11 @@ static void parse_scoll(sfMouseWheelScrollEvent scroll)
     float zoomFactor = 1.0f + scroll.delta / 10.0f;
 
     if (alt) {
-        Tool->canva->scale.x *= zoomFactor;
-        Tool->canva->scale.y *= zoomFactor;
-        Tool->canva->position = Vec2.subtract(mousePosition,
+        c->scale.x = CLAMP(c->scale.x * zoomFactor, CANVA_MIN_ZOOM,
+            CANVA_MAX_ZOOM);
+        c->scale.y = CLAMP(c->scale.y * zoomFactor, CANVA_MIN_ZOOM,
+            CANVA_MAX_ZOOM);
+        c->position = Vec2.subtract(mousePosition,
             Vec2.multiply(canvasMousePosition, zoomFactor));
     } else if (ctrl) {
         Tool->canva->position.x += scroll.delta * 10;
