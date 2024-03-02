@@ -48,6 +48,29 @@ static void parse_keyboard_events(sfEvent evt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Calculates the new scale factor based on the given zoom delta.
+///
+/// This function computes the new scale factor for a canvas based on the
+/// provided zoom delta, current scale, and predefined zoom limits. The zoom
+/// factor is applied to both the X and Y axes independently.
+///
+/// \param delta The zoom delta indicating the change in zoom level.
+/// \param scale The current scale of the canvas.
+/// \return The new scale factor after applying the zoom delta.
+///
+///////////////////////////////////////////////////////////////////////////////
+vec2f get_scale_factor(float delta, vec2f scale)
+{
+    float zoomFactor = 1.0f + delta / 10.0f;
+    float newScaleX = CLAMP(scale.x * zoomFactor, CANVA_MIN_ZOOM,
+        CANVA_MAX_ZOOM);
+    float newScaleY = CLAMP(scale.y * zoomFactor, CANVA_MIN_ZOOM,
+        CANVA_MAX_ZOOM);
+
+    return (VEC2(newScaleX, newScaleY));
+}
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Parses the mouse wheel scroll event to handle zooming and scrolling.
 ///
 /// This function is responsible for interpreting the mouse wheel scroll event
@@ -66,15 +89,12 @@ static void parse_scroll(sfMouseWheelScrollEvent scroll)
     vec2f mousePosition = TV2(scroll);
     vec2f canvasMousePosition = Vec2.subtract(mousePosition,
         Tool->canva->position);
-    float zoomFactor = 1.0f + scroll.delta / 10.0f;
+    vec2f newScale = get_scale_factor(scroll.delta, c->scale);
 
     if (alt) {
-        c->scale.x = CLAMP(c->scale.x * zoomFactor, CANVA_MIN_ZOOM,
-            CANVA_MAX_ZOOM);
-        c->scale.y = CLAMP(c->scale.y * zoomFactor, CANVA_MIN_ZOOM,
-            CANVA_MAX_ZOOM);
         c->position = Vec2.subtract(mousePosition,
-            Vec2.multiply(canvasMousePosition, zoomFactor));
+            Vec2.multiply(canvasMousePosition, newScale.x / c->scale.x));
+        c->scale = newScale;
     } else if (ctrl) {
         Tool->canva->position.x += scroll.delta * 10;
     } else {
