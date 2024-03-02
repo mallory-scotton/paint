@@ -201,4 +201,30 @@ void use_bucket_tool(void);
 ///////////////////////////////////////////////////////////////////////////////
 void transform_draw(canvas_t *c);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Saves the contents of the canvas as an image file.
+///
+/// This function saves the contents of the current canvas as an image file at
+/// the specified path. It creates an image structure from the canvas pixels
+/// and then saves it to the specified file. After saving, the image structure
+/// is destroyed.
+///
+/// \param path The file path to save the image.
+///
+///////////////////////////////////////////////////////////////////////////////
+static void save_image(string path);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Opens an image file and creates a canvas from it.
+///
+/// This function takes a file path as input, opens the image file, and creates
+/// a canvas with the same dimensions as the image. It then copies the image
+/// pixels to the canvas. After creating the canvas, the image structure is
+/// destroyed.
+///
+/// \param path The file path to the image.
+///
+///////////////////////////////////////////////////////////////////////////////
+void open_image(string path);
+
 #endif /* !CANVAS_H_ */

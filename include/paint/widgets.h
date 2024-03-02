@@ -197,4 +197,8 @@ void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
 ///////////////////////////////////////////////////////////////////////////////
 void view_toolbar_init(void);
 
+void view_header_init(void);
+void view_layers_init(void);
+void view_tool_option_init(void);
+
 #endif /* !WIDGETS_H_ */
