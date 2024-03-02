@@ -121,7 +121,8 @@ void use_bucket_tool(void)
     canvas_t *c = Tool->canva;
     vec2f pos = VEC2(Tool->canva->position.x - ((c->width * c->scale.x) / 2),
         c->position.y - ((c->height * c->scale.y) / 2));
-    vec2f mouse = Vec2.subtract(TV2(Tool->mousePos), pos);
+    vec2f mouse = Vec2.divide(Vec2.subtract(TV2(Tool->mousePos), pos),
+        c->scale.x);
     int x = (int)mouse.x;
     int y = (int)mouse.y;
     sfColor targetColor = getpixel(x, y);
