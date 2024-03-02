@@ -40,9 +40,11 @@ int main(int argc, warray argv)
     time_init();
     widgets_init();
     tool_init();
+    assets_init();
     loop();
     widgets_destroy();
     window_destroy();
     time_destroy();
-    return 0;
+    assets_destroy();
+    return (0);
 }
