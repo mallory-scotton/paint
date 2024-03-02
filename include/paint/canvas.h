@@ -76,6 +76,8 @@ typedef enum tool_type_e {
     e_tool_eraser,
     e_tool_pencil,
     e_tool_bucket,
+    e_tool_brush,
+    e_tool_picker,
     TOOL_COUNT
 } tool_type_t;
 
