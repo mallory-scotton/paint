@@ -45,6 +45,7 @@ void canvas_add(uint width, uint height, string name, sfColor baseColor)
         new->pixels[i + 3] = baseColor.a;
     }
     Canvas = new;
+    Tool->canva = Canvas;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -197,6 +197,16 @@ void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
 ///////////////////////////////////////////////////////////////////////////////
 void view_toolbar_init(void);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Initializes the entire view.
+///
+/// This function initializes the header, toolbar, tool options, and layers of
+/// the view. It ensures that the necessary components for the graphical user
+/// interface are set up for interaction.
+///
+///////////////////////////////////////////////////////////////////////////////
+void view_init(void);
+
 void view_header_init(void);
 void view_layers_init(void);
 void view_tool_option_init(void);
