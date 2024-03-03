@@ -10,28 +10,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "paint.h"
 
-void custom_draw(widget_t *wid)
-{
-    sfCircleShape *c = sfCircleShape_create();
-
-    sfCircleShape_setFillColor(c, sfBlue);
-    sfCircleShape_setRadius(c, 10);
-    sfCircleShape_setOrigin(c, VEC2(10, 10));
-    sfCircleShape_setPosition(c, VEC2(wid->position.x + 10, wid->position.y
-        + 5));
-    sfRenderWindow_drawCircleShape(Win->self, c, NULL);
-    sfCircleShape_destroy(c);
-}
-
-void test(void)
-{
-    Widgets[e_widget_toolbar]->visible = true;
-    Widgets[e_widget_toolbar]->size = VEC2(1920, 20);
-    Widgets[e_widget_toolbar]->hasCustomDraw = true;
-    Widgets[e_widget_toolbar]->customDraw = &custom_draw;
-    Widgets[e_widget_toolbar]->backgroundColor = sfWhite;
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calls the appropriate function based on the selected tool.
 ///
@@ -42,6 +20,7 @@ static void use_tool(void)
 {
     DOIF(Tool->type == e_tool_pencil, use_pencil_tool());
     DOIF(Tool->type == e_tool_eraser, use_eraser_tool());
+    DOIF(Tool->type == e_tool_bucket, use_bucket_tool());
 }
 
 static void draw_cursor(void)
@@ -68,18 +47,21 @@ static void draw_cursor(void)
 ///////////////////////////////////////////////////////////////////////////////
 void loop(void)
 {
-    Canvas = NULL;
-    canvas_add(1280, 720, "TEST_CANVAS", sfWhite);
-    Tool->canva = Canvas;
-    sfRenderWindow_setMouseCursorVisible(Win->self, false);
+    bool cursorOnWidget = false;
+
+    view_init();
+    canvas_add(1920, 1080, "hello", sfWhite);
     while (sfRenderWindow_isOpen(Win->self)) {
+        cursorOnWidget = false;
         events();
-        sfRenderWindow_clear(Win->self, sfColor_fromRGB(237, 244, 248));
-        DOIF(Tool->mousePressed, use_tool());
-        for (uint i = 0; i < WIDGET_COUNT; i++)
-            widget_draw(Widgets[i]);
+        sfRenderWindow_clear(Win->self, COLOR_BG_CANVA);
         canvas_draw(Tool->canva);
-        draw_cursor();
+        transform_draw(Tool->canva);
+        for (uint i = 0; i < WIDGET_COUNT; i++)
+            widget_draw(Widgets[i], &cursorOnWidget);
+        sfRenderWindow_setMouseCursorVisible(Win->self, cursorOnWidget);
+        DOIF(Tool->mousePressed && !cursorOnWidget, use_tool());
+        DOIF(!cursorOnWidget, draw_cursor());
         sfRenderWindow_display(Win->self);
     }
 }
