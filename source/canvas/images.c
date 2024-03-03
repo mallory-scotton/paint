@@ -42,7 +42,7 @@ void open_image(string path)
 /// \param path The file path to save the image.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-static void save_image(string path)
+void save_image(string path)
 {
     canvas_t *c = Tool->canva;
     sfImage *img = sfImage_createFromPixels(c->width, c->height, c->pixels);
