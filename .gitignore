@@ -39,3 +39,9 @@
 !Makefile
 !.gitignore
 !LICENSE
+
+# Ignore tests images
+/*.png
+/*.jpg
+/*.bmp
+/*.jpeg
