@@ -25,6 +25,16 @@ typedef enum widget_list_e {
     e_widget_layers,
     e_widget_explorer,
     e_widget_creation,
+    e_widget_brush,
+    e_subwidget_file,
+    e_subwidget_edit,
+    e_subwidget_image,
+    e_subwidget_layer,
+    e_subwidget_view,
+    e_subwidget_window,
+    e_subwidget_more,
+    e_subwidget_help,
+    e_subwidget_virtual_key,
     WIDGET_COUNT
 } widget_list_t;
 
@@ -132,10 +142,9 @@ void assets_destroy(void);
 /// finally calls the custom draw function if specified.
 ///
 /// \param wid Pointer to the widget_t structure.
-/// \param cursorOnWidget Pointer to the cursorOnWidget flag.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void widget_draw(widget_t *wid, bool *cursorOnWidget);
+void widget_draw(widget_t *wid);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Initializes the widgets array.

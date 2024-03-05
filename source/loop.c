@@ -39,12 +39,12 @@ static void draw_cursor(void)
     sfCircleShape_destroy(c);
 }
 
-static void need_cursor(bool cursorOnWidget)
+static void need_cursor()
 {
-    if (!cursorOnWidget && (Tool->type == e_tool_brush ||
+    if (!Win->cursorOnWidget && (Tool->type == e_tool_brush ||
         Tool->type == e_tool_eraser || Tool->type == e_tool_pencil)) {
         draw_cursor();
-        sfRenderWindow_setMouseCursorVisible(Win->self, cursorOnWidget);
+        sfRenderWindow_setMouseCursorVisible(Win->self, false);
     } else {
         sfRenderWindow_setMouseCursorVisible(Win->self, true);
     }
@@ -58,19 +58,17 @@ static void need_cursor(bool cursorOnWidget)
 ///////////////////////////////////////////////////////////////////////////////
 void loop(void)
 {
-    bool cursorOnWidget = false;
-
     view_init();
     canvas_add(1920, 1080, "hello", sfWhite);
     while (sfRenderWindow_isOpen(Win->self)) {
-        cursorOnWidget = false;
         events();
+        Win->cursorOnWidget = false;
         sfRenderWindow_clear(Win->self, COLOR_BG_CANVA);
         canvas_draw(Tool->canva);
         for (uint i = 0; i < WIDGET_COUNT; i++)
-            widget_draw(Widgets[i], &cursorOnWidget);
-        DOIF(Tool->mousePressed && !cursorOnWidget, use_tool());
-        need_cursor(cursorOnWidget);
+            widget_draw(Widgets[i]);
+        DOIF(Tool->mousePressed && !Win->cursorOnWidget, use_tool());
+        need_cursor();
         sfRenderWindow_display(Win->self);
     }
 }

@@ -31,6 +31,7 @@ typedef struct global_window_s {
     sfRenderWindow *self;
     vec2u size;
     bool isFullscreen;
+    bool cursorOnWidget;
 } global_window_t;
 
 ///////////////////////////////////////////////////////////////////////////////

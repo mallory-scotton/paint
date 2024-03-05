@@ -37,16 +37,15 @@ static void widget_background_draw(widget_t *wid)
 /// widget. If so, it sets the cursorOnWidget flag to true.
 ///
 /// \param wid Pointer to the widget_t structure.
-/// \param cursorOnWidget Pointer to the cursorOnWidget flag.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-static void widget_set_cursor_visible(widget_t *wid, bool *cursorOnWidget)
+static void widget_set_cursor_visible(widget_t *wid)
 {
     vec2i mp = sfMouse_getPositionRenderWindow(Win->self);
 
     if (mp.x >= wid->position.x && mp.x < wid->position.x + wid->size.x &&
         mp.y >= wid->position.y && mp.y < wid->position.y + wid->size.y) {
-        *cursorOnWidget = true;
+        Win->cursorOnWidget = true;
     }
 }
 
@@ -61,10 +60,10 @@ static void widget_set_cursor_visible(widget_t *wid, bool *cursorOnWidget)
 /// \param cursorOnWidget Pointer to the cursorOnWidget flag.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void widget_draw(widget_t *wid, bool *cursorOnWidget)
+void widget_draw(widget_t *wid)
 {
     RETURN(!wid->visible, (void)0);
-    DOIF(!(*cursorOnWidget), widget_set_cursor_visible(wid, cursorOnWidget));
+    DOIF(!Win->cursorOnWidget, widget_set_cursor_visible(wid));
     widget_background_draw(wid);
     for (uint i = 0; i < wid->buttonCount; i++)
         button_draw(wid, wid->buttons[i]);

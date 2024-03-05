@@ -59,6 +59,8 @@ status window_init(void)
 
     Win = malloc(sizeof(global_window_t));
     RETURN(Win == NULL, fail);
+    Win->isFullscreen = false;
+    Win->cursorOnWidget = false;
     Win->self = sfRenderWindow_create(WIN_MODE, WIN_TITLE, WIN_STYLE, NULL);
     RETURN(Win->self == NULL, fail);
     DOIF(WIN_ICON != NULL, window_init_icon());

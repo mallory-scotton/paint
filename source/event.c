@@ -118,7 +118,7 @@ void events(void)
     while (sfRenderWindow_pollEvent(Win->self, &evt)) {
         parse_mouse_events(evt);
         parse_keyboard_events(evt);
-        DOIF(evt.type == sfEvtMouseWheelScrolled,
+        DOIF(evt.type == sfEvtMouseWheelScrolled && !Win->cursorOnWidget,
             parse_scroll(evt.mouseWheelScroll));
     }
 }
