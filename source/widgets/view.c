@@ -60,7 +60,7 @@ void check_view_collisions(void)
 {
     Win->cursorOnWidget = false;
     for (int i = WIDGET_COUNT - 1; i >= 0; i--) {
-        if (!Win->cursorOnWidget) {
+        if (!Win->cursorOnWidget && Widgets[i]->visible) {
             Widgets[i]->cursorOver = cursor_over_view(Widgets[i]);
             continue;
         }
