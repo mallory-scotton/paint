@@ -39,6 +39,17 @@ static void draw_cursor(void)
     sfCircleShape_destroy(c);
 }
 
+static void need_cursor(bool cursorOnWidget)
+{
+    if (!cursorOnWidget && (Tool->type == e_tool_brush ||
+        Tool->type == e_tool_eraser || Tool->type == e_tool_pencil)) {
+        draw_cursor();
+        sfRenderWindow_setMouseCursorVisible(Win->self, cursorOnWidget);
+    } else {
+        sfRenderWindow_setMouseCursorVisible(Win->self, true);
+    }
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief The main loop of the program.
 ///
@@ -56,12 +67,10 @@ void loop(void)
         events();
         sfRenderWindow_clear(Win->self, COLOR_BG_CANVA);
         canvas_draw(Tool->canva);
-        transform_draw(Tool->canva);
         for (uint i = 0; i < WIDGET_COUNT; i++)
             widget_draw(Widgets[i], &cursorOnWidget);
-        sfRenderWindow_setMouseCursorVisible(Win->self, cursorOnWidget);
         DOIF(Tool->mousePressed && !cursorOnWidget, use_tool());
-        DOIF(!cursorOnWidget, draw_cursor());
+        need_cursor(cursorOnWidget);
         sfRenderWindow_display(Win->self);
     }
 }
