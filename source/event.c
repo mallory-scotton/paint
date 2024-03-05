@@ -91,15 +91,16 @@ static void parse_scroll(sfMouseWheelScrollEvent scroll)
         Tool->canva->position);
     vec2f newScale = get_scale_factor(scroll.delta, c->scale);
 
-    if (alt) {
+    if (alt && scroll.wheel == 0) {
         c->position = Vec2.subtract(mousePosition,
             Vec2.multiply(canvasMousePosition, newScale.x / c->scale.x));
         c->scale = newScale;
-    } else if (ctrl) {
-        Tool->canva->position.x += scroll.delta * 10;
-    } else {
-        Tool->canva->position.y += scroll.delta * 10;
     }
+    RETURN(alt, (void)0);
+    if ((scroll.wheel == 0 && ctrl) || (scroll.wheel == 1 && !ctrl))
+        Tool->canva->position.x += scroll.delta * 10;
+    else
+        Tool->canva->position.y += scroll.delta * 10;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
