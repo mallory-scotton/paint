@@ -98,9 +98,9 @@ static void parse_scroll(sfMouseWheelScrollEvent scroll)
     }
     RETURN(alt, (void)0);
     if ((scroll.wheel == 0 && ctrl) || (scroll.wheel == 1 && !ctrl))
-        Tool->canva->position.x += scroll.delta * 10;
+        Tool->canva->position.x += scroll.delta * ZOOM_SPEED;
     else
-        Tool->canva->position.y += scroll.delta * 10;
+        Tool->canva->position.y += scroll.delta * ZOOM_SPEED;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

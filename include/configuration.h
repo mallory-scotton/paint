@@ -52,6 +52,7 @@
     #define CANVA_MAX_ZOOM 64.0f
     #define CANVA_MIN_ZOOM 1 / 128.0f
     #define MAX_STACK_SIZE 10000000
+    #define ZOOM_SPEED 20
 
 ///////////////////////////////////////////////////////////////////////////////
 
