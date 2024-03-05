@@ -49,6 +49,33 @@ void canvas_add(uint width, uint height, string name, sfColor baseColor)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws transparent tiles on the canvas.
+///
+/// This function draws transparent tiles on the canvas based on the specified
+/// parameters.
+///
+/// \param tran The sprite representing the transparent tile.
+/// \param numTiles The number of tiles in both the x and y directions.
+/// \param tileScale The scaling factor for each tile.
+/// \param pos The position of the tiles on the canvas.
+///
+///////////////////////////////////////////////////////////////////////////////
+static void canvas_draw_transparent_loop(sfSprite *tran, vec2i numTiles,
+    vec2f tileScale, vec2f pos)
+{
+    vec2f newPos;
+
+    for (int x = 0; x < numTiles.x; x++)
+        for (int y = 0; y < numTiles.y; y++) {
+            newPos = VEC2(pos.x + x * 16.0f * tileScale.x,
+                pos.y + y * 16.0f * tileScale.y);
+            sfSprite_setPosition(tran, newPos);
+            DOIF(!(newPos.x < 0 || newPos.x > WIN_WIDTH || newPos.y < 0
+                || newPos.y > WIN_HEIGHT), SPRITE_DRAW(tran));
+        }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Draws a transparent grid on the canvas.
 ///
 /// \param c Pointer to the canvas to draw on.
@@ -65,21 +92,14 @@ static void canvas_draw_transparent(canvas_t *c)
     vec2f cover = Vec2.multiply(VEC2(c->width, c->height), c->scale.x);
     vec2f pos = VEC2(c->position.x - (c->width * c->scale.x) / 2,
         c->position.y - (c->height * c->scale.y) / 2);
-    vec2i numTiles = VEC2I(cover.x / 16.0f, cover.y / 16.0f);
+    vec2i numTiles = VEC2I(CLAMP(cover.x / 16.0f, 0, c->width),
+        CLAMP(cover.y / 16.0f, 0, c->height));
     vec2f tileScale = VEC2F(cover.x / (numTiles.x * 16.0f), cover.y /
         (numTiles.y * 16.0f));
-    vec2f newPos;
 
     sfSprite_setTexture(tran, Assets[e_assets_transparent], false);
     sfSprite_setScale(tran, tileScale);
-    for (int x = 0; x < numTiles.x; x++)
-        for (int y = 0; y < numTiles.y; y++) {
-            newPos = VEC2(pos.x + x * 16.0f * tileScale.x,
-                pos.y + y * 16.0f * tileScale.y);
-            sfSprite_setPosition(tran, newPos);
-            DOIF(!(newPos.x < 0 || newPos.x > WIN_WIDTH || newPos.y < 0
-                || newPos.y > WIN_HEIGHT), SPRITE_DRAW(tran));
-        }
+    canvas_draw_transparent_loop(tran, numTiles, tileScale, pos);
     sfSprite_destroy(tran);
 }
 
