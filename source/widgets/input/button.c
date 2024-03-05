@@ -88,6 +88,53 @@ static void button_parse_state(button_t *btn, vec2f pos, sfRectangleShape *bck)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws the text of a button.
+///
+/// \param btn Pointer to the button_t structure.
+///
+///////////////////////////////////////////////////////////////////////////////
+static void button_draw_text(button_t *btn, vec2f pos)
+{
+    sfText *text = sfText_create();
+    float pad = (btn->iconSize.x + btn->padding.x * 2) * btn->iconSize.x;
+
+    sfText_setFont(text, OpenSans);
+    sfText_setPosition(text, VEC2(pad + pos.x + btn->padding.x - 1.0f,
+        pos.y + btn->padding.y));
+    sfText_setString(text, btn->text);
+    sfText_setColor(text, btn->textColor);
+    sfText_setCharacterSize(text, btn->textSize);
+    sfRenderWindow_drawText(Win->self, text, NULL);
+    sfText_destroy(text);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Calculate automatically the width of a button if set by default
+/// to -1.0f
+///
+/// \param btn The button to calculate the width
+///
+/// \return The width of the button base on the text and icon size
+///
+///////////////////////////////////////////////////////////////////////////////
+static float button_calculate_width(button_t *btn)
+{
+    sfText *text = sfText_create();
+    rectf textSize = {0, 0, 0, 0};
+
+    if (btn->text) {
+        sfText_setFont(text, OpenSans);
+        sfText_setString(text, btn->text);
+        sfText_setCharacterSize(text, btn->textSize);
+        textSize = sfText_getLocalBounds(text);
+        if (btn->icon != NULL)
+            textSize.width += btn->padding.x;
+    }
+    sfText_destroy(text);
+    return (btn->iconSize.x + textSize.width + (btn->padding.x * 2));
+}
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Draws a button on the window.
 ///
 /// This function creates a rectangle shape representing the button's
@@ -104,13 +151,18 @@ void button_draw(widget_t *wid, button_t *btn)
     vec2f pos = Vec2.add(wid->position, btn->pos);
     sfRectangleShape *bck = sfRectangleShape_create();
 
+    if (btn->size.x == -1.0f)
+        btn->size.x = button_calculate_width(btn);
     sfRectangleShape_setSize(bck, btn->size);
     sfRectangleShape_setFillColor(bck, btn->backgroundColor);
     sfRectangleShape_setPosition(bck, pos);
     button_parse_state(btn, pos, bck);
-    DOIF(btn->state == e_state_hovered && Tool->mousePressed,
-        btn->onClick(btn));
+    if (btn->state == e_state_hovered && Tool->mousePressed) {
+        btn->onClick(btn);
+        Tool->mousePressed = false;
+    }
     sfRenderWindow_drawRectangleShape(Win->self, bck, NULL);
     DOIF(btn->icon != NULL, button_draw_icon(btn, pos));
+    DOIF(btn->text != NULL, button_draw_text(btn, pos));
     sfRectangleShape_destroy(bck);
 }
