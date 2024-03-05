@@ -31,8 +31,8 @@ void view_header_buttons(void)
 
 void view_header_init(void)
 {
-    Widgets[e_widget_header]->size.x = WIN_WIDTH;
-    Widgets[e_widget_header]->size.y = UI_TOOL_H;
+    Widgets[e_widget_header]->size.x = UI_HEADER_W;
+    Widgets[e_widget_header]->size.y = UI_HEADER_H;
     Widgets[e_widget_header]->position.x = 0;
     Widgets[e_widget_header]->position.y = 0;
     Widgets[e_widget_header]->backgroundColor = COLOR_BASE;

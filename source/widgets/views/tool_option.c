@@ -15,7 +15,7 @@ void view_tool_option_init(void)
     Widgets[e_widget_tool_option]->size.x = WIN_WIDTH;
     Widgets[e_widget_tool_option]->size.y = UI_TOOL_H;
     Widgets[e_widget_tool_option]->position.x = 0;
-    Widgets[e_widget_tool_option]->position.y = UI_TOOL_H;
+    Widgets[e_widget_tool_option]->position.y = UI_HEADER_H;
     Widgets[e_widget_tool_option]->backgroundColor = COLOR_BASE;
     Widgets[e_widget_tool_option]->buttonCount = 0;
     Widgets[e_widget_tool_option]->visible = true;

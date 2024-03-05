@@ -81,11 +81,13 @@
 
     #define UI_TOOLBAR_W 60
     #define UI_PAD MID(60, 46)
+    #define UI_HEADER_W WIN_WIDTH
+    #define UI_HEADER_H 42
     #define UI_TOOL_W 46
     #define UI_TOOL_H 46
     #define UI_TOOL_ICON_W 32
     #define UI_TOOL_ICON_H 32
-    #define UI_TOOLBAR_H (WIN_HEIGHT - UI_TOOL_H * 2)
+    #define UI_TOOLBAR_H (WIN_HEIGHT - UI_TOOL_H - UI_HEADER_H)
     #define UI_LAYERS_W 300
     #define UI_LAYERS_H UI_TOOLBAR_H
 
