@@ -68,10 +68,16 @@ static void button_draw_accent(button_t *btn, vec2f pos)
 /// \param bck Pointer to the button's background rectangle shape.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-static void button_parse_state(button_t *btn, vec2f pos)
+static void button_parse_state(button_t *btn, vec2f pos, widget_t *wid)
 {
-    vec2i mousePos = sfMouse_getPositionRenderWindow(Win->self);
+    vec2i mousePos;
 
+    if (!wid->cursorOver) {
+        if (btn->state == e_state_hovered)
+            btn->state = e_state_active;
+        return;
+    }
+    mousePos = sfMouse_getPositionRenderWindow(Win->self);
     if (mousePos.x >= pos.x && mousePos.x < pos.x + btn->size.x &&
         mousePos.y >= pos.y && mousePos.y < pos.y + btn->size.y) {
         if (btn->state != e_state_clicked)
@@ -146,7 +152,7 @@ void button_draw(widget_t *wid, button_t *btn)
 
     if (btn->size.x == -1.0f)
         btn->size.x = button_calculate_width(btn);
-    button_parse_state(btn, pos);
+    button_parse_state(btn, pos, wid);
     if (btn->state == e_state_hovered && Tool->mousePressed) {
         btn->onClick(btn);
         Tool->mousePressed = false;

@@ -31,25 +31,6 @@ static void widget_background_draw(widget_t *wid)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief Checks and sets the cursor visibility on the widget.
-///
-/// This function checks whether the cursor is within the boundaries of the
-/// widget. If so, it sets the cursorOnWidget flag to true.
-///
-/// \param wid Pointer to the widget_t structure.
-///
-///////////////////////////////////////////////////////////////////////////////
-static void widget_set_cursor_visible(widget_t *wid)
-{
-    vec2i mp = sfMouse_getPositionRenderWindow(Win->self);
-
-    if (mp.x >= wid->position.x && mp.x < wid->position.x + wid->size.x &&
-        mp.y >= wid->position.y && mp.y < wid->position.y + wid->size.y) {
-        Win->cursorOnWidget = true;
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////
 /// \brief Draws the widget.
 ///
 /// This function draws the background of the widget, checks and sets the
@@ -63,7 +44,6 @@ static void widget_set_cursor_visible(widget_t *wid)
 void widget_draw(widget_t *wid)
 {
     RETURN(!wid->visible, (void)0);
-    DOIF(!Win->cursorOnWidget, widget_set_cursor_visible(wid));
     widget_background_draw(wid);
     for (uint i = 0; i < wid->buttonCount; i++)
         button_draw(wid, wid->buttons[i]);

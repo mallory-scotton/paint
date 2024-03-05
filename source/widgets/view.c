@@ -25,3 +25,44 @@ void view_init(void)
     view_tool_option_init();
     view_layers_init();
 }
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Parse the cursor position related to the view.
+///
+/// \param wid The widget to check.
+///
+/// \return True if the cursor is over the view, false otherwise.
+///
+///////////////////////////////////////////////////////////////////////////////
+bool cursor_over_view(widget_t *wid)
+{
+    vec2i mp = sfMouse_getPositionRenderWindow(Win->self);
+
+    if (mp.x >= wid->position.x && mp.x < wid->position.x + wid->size.x &&
+        mp.y >= wid->position.y && mp.y < wid->position.y + wid->size.y) {
+        wid->cursorOver = true;
+        Win->cursorOnWidget = true;
+        return (true);
+    }
+    return (false);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Checks for collisions between the cursor and view components.
+///
+/// This function iterates through the view components, checking for collisions
+/// between the cursor and each component. It sets flags to indicate whether
+/// the cursor is over a widget or a specific view element.
+///
+///////////////////////////////////////////////////////////////////////////////
+void check_view_collisions(void)
+{
+    Win->cursorOnWidget = false;
+    for (int i = WIDGET_COUNT - 1; i >= 0; i--) {
+        if (!Win->cursorOnWidget) {
+            Widgets[i]->cursorOver = cursor_over_view(Widgets[i]);
+            continue;
+        }
+        Widgets[i]->cursorOver = false;
+    }
+}

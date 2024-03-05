@@ -39,7 +39,7 @@ static void draw_cursor(void)
     sfCircleShape_destroy(c);
 }
 
-static void need_cursor()
+static void need_cursor(void)
 {
     if (!Win->cursorOnWidget && (Tool->type == e_tool_brush ||
         Tool->type == e_tool_eraser || Tool->type == e_tool_pencil)) {
@@ -62,7 +62,7 @@ void loop(void)
     canvas_add(1920, 1080, "hello", sfWhite);
     while (sfRenderWindow_isOpen(Win->self)) {
         events();
-        Win->cursorOnWidget = false;
+        check_view_collisions();
         sfRenderWindow_clear(Win->self, COLOR_BG_CANVA);
         canvas_draw(Tool->canva);
         for (uint i = 0; i < WIDGET_COUNT; i++)

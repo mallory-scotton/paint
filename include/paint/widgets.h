@@ -72,6 +72,7 @@ typedef struct widget_s {
     sfColor backgroundColor;
     void (*customDraw)(widget_t *wid);
     bool hasCustomDraw;
+    bool cursorOver;
 } widget_t;
 
 typedef enum assets_e {
@@ -233,6 +234,26 @@ void view_toolbar_init(void);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void view_init(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Parse the cursor position related to the view.
+///
+/// \param wid The widget to check.
+///
+/// \return True if the cursor is over the view, false otherwise.
+///
+///////////////////////////////////////////////////////////////////////////////
+bool cursor_over_view(widget_t *wid);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Checks for collisions between the cursor and view components.
+///
+/// This function iterates through the view components, checking for collisions
+/// between the cursor and each component. It sets flags to indicate whether
+/// the cursor is over a widget or a specific view element.
+///
+///////////////////////////////////////////////////////////////////////////////
+void check_view_collisions(void);
 
 void view_header_init(void);
 void view_layers_init(void);
