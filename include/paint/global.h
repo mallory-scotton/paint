@@ -374,4 +374,7 @@ status time_update(void);
 ///////////////////////////////////////////////////////////////////////////////
 status time_destroy(void);
 
+// Font variable used in the paint
+extern sfFont *OpenSans;
+
 #endif /* !GLOBAL_H_ */

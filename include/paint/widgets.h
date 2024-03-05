@@ -45,7 +45,8 @@ typedef struct button_s {
     sfColor hoverBackgroundColor;
     sfColor textColor;
     sfColor iconColor;
-    string content;
+    string text;
+    uint textSize;
     sfTexture *icon;
     vec2f iconSize;
     vec2f padding;
@@ -185,6 +186,23 @@ void button_draw(widget_t *wid, button_t *btn);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
+    void (*onClick)(button_t *btn));
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Initializes a button for the header with the specified parameters.
+///
+/// This function sets the initial values for a button intended for the header
+/// It configures the button's background and hover background colors, text,
+/// position, size, padding, and onClick function.
+///
+/// \param btn Pointer to the button_t structure to be initialized.
+/// \param text Pointer to the texture representing the button's text.
+/// \param pos Position of the button in the toolbar.
+/// \param onClick Pointer to the function to be executed when the button is
+///               clicked.
+///
+///////////////////////////////////////////////////////////////////////////////
+void button_set_header(button_t *btn, string text, vec2f pos,
     void (*onClick)(button_t *btn));
 
 ///////////////////////////////////////////////////////////////////////////////
