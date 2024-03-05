@@ -49,9 +49,9 @@ static void button_draw_accent(button_t *btn, vec2f pos)
 {
     sfRectangleShape *acc = sfRectangleShape_create();
 
-    sfRectangleShape_setSize(acc, VEC2(4, btn->size.y));
+    sfRectangleShape_setSize(acc, VEC2(6, btn->size.y));
     sfRectangleShape_setFillColor(acc, COLOR_ACCENT);
-    sfRectangleShape_setPosition(acc, VEC2(pos.x - 4, pos.y));
+    sfRectangleShape_setPosition(acc, VEC2(pos.x - 3, pos.y));
     sfRenderWindow_drawRectangleShape(Win->self, acc, NULL);
     sfRectangleShape_destroy(acc);
 }
@@ -68,7 +68,7 @@ static void button_draw_accent(button_t *btn, vec2f pos)
 /// \param bck Pointer to the button's background rectangle shape.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-static void button_parse_state(button_t *btn, vec2f pos, sfRectangleShape *bck)
+static void button_parse_state(button_t *btn, vec2f pos)
 {
     vec2i mousePos = sfMouse_getPositionRenderWindow(Win->self);
 
@@ -78,12 +78,6 @@ static void button_parse_state(button_t *btn, vec2f pos, sfRectangleShape *bck)
             btn->state = e_state_hovered;
     } else {
         DOIF(btn->state == e_state_hovered, EQ2(btn->state, e_state_active));
-    }
-    if (btn->state == e_state_hovered)
-        sfRectangleShape_setFillColor(bck, btn->hoverBackgroundColor);
-    if (btn->state == e_state_clicked) {
-        sfRectangleShape_setFillColor(bck, btn->hoverBackgroundColor);
-        button_draw_accent(btn, pos);
     }
 }
 
@@ -149,20 +143,18 @@ static float button_calculate_width(button_t *btn)
 void button_draw(widget_t *wid, button_t *btn)
 {
     vec2f pos = Vec2.add(wid->position, btn->pos);
-    sfRectangleShape *bck = sfRectangleShape_create();
 
     if (btn->size.x == -1.0f)
         btn->size.x = button_calculate_width(btn);
-    sfRectangleShape_setSize(bck, btn->size);
-    sfRectangleShape_setFillColor(bck, btn->backgroundColor);
-    sfRectangleShape_setPosition(bck, pos);
-    button_parse_state(btn, pos, bck);
+    button_parse_state(btn, pos);
     if (btn->state == e_state_hovered && Tool->mousePressed) {
         btn->onClick(btn);
         Tool->mousePressed = false;
     }
-    sfRenderWindow_drawRectangleShape(Win->self, bck, NULL);
+    draw_rounded_rectangle(btn->size, pos, btn->state == e_state_active ?
+        btn->backgroundColor : btn->hoverBackgroundColor, 5.0f);
+    if (btn->state == e_state_clicked)
+        button_draw_accent(btn, pos);
     DOIF(btn->icon != NULL, button_draw_icon(btn, pos));
     DOIF(btn->text != NULL, button_draw_text(btn, pos));
-    sfRectangleShape_destroy(bck);
 }

@@ -34,4 +34,19 @@ u8 dircount(cstring path);
 ///////////////////////////////////////////////////////////////////////////////
 warray dircontent(cstring path);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws a rounded rectangle.
+///
+/// This function draws a rounded rectangle on the window using the specified
+/// size, position, fill color, and corner radius.
+///
+/// \param size The size of the rounded rectangle.
+/// \param pos The position of the rounded rectangle.
+/// \param fillColor The fill color of the rounded rectangle.
+/// \param radius The radius of the rounded corners.
+///
+///////////////////////////////////////////////////////////////////////////////
+void draw_rounded_rectangle(vec2f size, vec2f pos, sfColor fillColor,
+    float radius);
+
 #endif /* !UTILS_H_ */
