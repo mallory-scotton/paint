@@ -10,6 +10,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "paint.h"
 
+sfFont *OpenSans;
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Prints the help message for the program.
 ///
@@ -41,7 +43,9 @@ int main(int argc, warray argv)
     widgets_init();
     tool_init();
     assets_init();
+    OpenSans = sfFont_createFromFile("assets/opensans.ttf");
     loop();
+    sfFont_destroy(OpenSans);
     widgets_destroy();
     window_destroy();
     time_destroy();
