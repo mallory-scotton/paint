@@ -13,17 +13,18 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Initializes the entire view.
 ///
-/// This function initializes the header, toolbar, tool options, and layers of
+/// This function initializes the context, toolbar, tool options, and layers of
 /// the view. It ensures that the necessary components for the graphical user
 /// interface are set up for interaction.
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void view_init(void)
 {
-    view_header_init();
+    view_context_init();
     view_toolbar_init();
     view_tool_option_init();
     view_layers_init();
+    view_sub_file_init();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

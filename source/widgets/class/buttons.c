@@ -44,9 +44,9 @@ void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief Initializes a button for the header with the specified parameters.
+/// \brief Initializes a button for the context with the specified parameters.
 ///
-/// This function sets the initial values for a button intended for the header
+/// This function sets the initial values for a button intended for the context
 /// It configures the button's background and hover background colors, text,
 /// position, size, padding, and onClick function.
 ///
@@ -57,7 +57,7 @@ void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
 ///               clicked.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void button_set_header(button_t *btn, string text, vec2f pos,
+void button_set_context(button_t *btn, string text, vec2f pos,
     void (*onClick)(button_t *btn))
 {
     btn->backgroundColor = sfTransparent;

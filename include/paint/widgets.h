@@ -18,7 +18,7 @@ typedef struct widget_s widget_t;
 typedef struct button_s button_t;
 
 typedef enum widget_list_e {
-    e_widget_header,
+    e_widget_context,
     e_widget_tool_option,
     e_widget_canvas,
     e_widget_toolbar,
@@ -199,9 +199,9 @@ void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
     void (*onClick)(button_t *btn));
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief Initializes a button for the header with the specified parameters.
+/// \brief Initializes a button for the context with the specified parameters.
 ///
-/// This function sets the initial values for a button intended for the header
+/// This function sets the initial values for a button intended for the context
 /// It configures the button's background and hover background colors, text,
 /// position, size, padding, and onClick function.
 ///
@@ -212,7 +212,7 @@ void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
 ///               clicked.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void button_set_header(button_t *btn, string text, vec2f pos,
+void button_set_context(button_t *btn, string text, vec2f pos,
     void (*onClick)(button_t *btn));
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -228,7 +228,7 @@ void view_toolbar_init(void);
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Initializes the entire view.
 ///
-/// This function initializes the header, toolbar, tool options, and layers of
+/// This function initializes the context, toolbar, tool options, and layers of
 /// the view. It ensures that the necessary components for the graphical user
 /// interface are set up for interaction.
 ///
@@ -255,8 +255,9 @@ bool cursor_over_view(widget_t *wid);
 ///////////////////////////////////////////////////////////////////////////////
 void check_view_collisions(void);
 
-void view_header_init(void);
+void view_context_init(void);
 void view_layers_init(void);
 void view_tool_option_init(void);
+void view_sub_file_init(void);
 
 #endif /* !WIDGETS_H_ */
