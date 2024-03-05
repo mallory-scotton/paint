@@ -62,8 +62,8 @@
 ///////////////////////////////////////////////////////////////////////////////
     #define EQ3(x, y, z) ((x) = (y) = (z))
     #define EQ2(x, y) ((x) = (y))
-    #define DEC1(x) --(x)
-    #define INC1(x) ++(x)
+    #define DEC1(x) --x
+    #define INC1(x) x++
     #define DEC2(x, y) --(x), --(y)
     #define INC2(x, y) ++(x), ++(y)
     #define INC1DEC1(x, y) ++(x), --(y)
