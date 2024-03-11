@@ -10,23 +10,29 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "paint.h"
 
-void dummy_click(button_t *btn)
+static void show_subwidget(button_t *btn)
 {
-    return;
+    widget_list_t sub[8] = {e_subwidget_file, e_subwidget_edit,
+        e_subwidget_image, e_subwidget_layer, e_subwidget_view,
+        e_subwidget_window, e_subwidget_more, e_subwidget_help};
+
+    for (int i = 0; i < 8; i++)
+        Widgets[sub[i]]->visible = false;
+    Widgets[sub[btn->index]]->visible = true;
 }
 
-void view_context_buttons(void)
+static void view_context_buttons(void)
 {
     button_t **list = Widgets[e_widget_context]->buttons;
 
-    button_set_context(list[0], "File", VEC2(4, 6), &dummy_click);
-    button_set_context(list[1], "Edit", VEC2(59, 6), &dummy_click);
-    button_set_context(list[2], "Image", VEC2(118, 6), &dummy_click);
-    button_set_context(list[3], "Layer", VEC2(196, 6), &dummy_click);
-    button_set_context(list[4], "View", VEC2(269, 6), &dummy_click);
-    button_set_context(list[5], "Window", VEC2(337, 6), &dummy_click);
-    button_set_context(list[6], "More", VEC2(434, 6), &dummy_click);
-    button_set_context(list[7], "Help", VEC2(503, 6), &dummy_click);
+    button_set_context(list[0], "File", VEC2(4, 6), &show_subwidget);
+    button_set_context(list[1], "Edit", VEC2(59, 6), &show_subwidget);
+    button_set_context(list[2], "Image", VEC2(118, 6), &show_subwidget);
+    button_set_context(list[3], "Layer", VEC2(196, 6), &show_subwidget);
+    button_set_context(list[4], "View", VEC2(269, 6), &show_subwidget);
+    button_set_context(list[5], "Window", VEC2(337, 6), &show_subwidget);
+    button_set_context(list[6], "More", VEC2(434, 6), &show_subwidget);
+    button_set_context(list[7], "Help", VEC2(503, 6), &show_subwidget);
 }
 
 void view_context_init(void)
