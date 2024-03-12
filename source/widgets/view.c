@@ -32,6 +32,7 @@ void view_init(void)
     view_sub_window_init();
     view_sub_more_init();
     view_sub_help_init();
+    view_sub_helpcredit();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

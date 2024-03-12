@@ -96,3 +96,22 @@ void button_set_sub_context(button_t *btn, string text, vec2f pos,
     btn->cornerRadius = 0.0f;
     btn->asAccent = false;
 }
+
+void button_set_close(button_t *btn, string Text, vec2f pos,
+    void (*onClick)(button_t *btn))
+{
+    btn->backgroundColor = sfTransparent;
+    btn->hoverBackgroundColor = COLOR_BG_INPUT;
+    btn->text = my_strdup(Text);
+    btn->textColor = sfBlack;
+    btn->textSize = 16;
+    btn->icon = NULL;
+    btn->state = e_state_active;
+    btn->padding = VEC2(12.0f, 7.5f);
+    btn->pos = pos;
+    btn->onClick = onClick;
+    btn->iconSize = VEC2(0, 0);
+    btn->size = VEC2(30.0f, 30.0f);
+    btn->cornerRadius = 15.0f;
+    btn->asAccent = false;
+}
