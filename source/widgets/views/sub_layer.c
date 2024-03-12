@@ -33,6 +33,7 @@ void view_sub_layer_init(void)
     Widgets[e_subwidget_layer]->position.x = 196.0f;
     Widgets[e_subwidget_layer]->position.y = UI_CONTEXT_H - 3.0f;
     Widgets[e_subwidget_layer]->backgroundColor = sfWhite;
+    Widgets[e_subwidget_layer]->hasShadow = true;
     Widgets[e_subwidget_layer]->buttonCount = 4;
     Widgets[e_subwidget_layer]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_subwidget_layer]->buttonCount);

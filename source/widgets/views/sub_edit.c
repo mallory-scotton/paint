@@ -36,6 +36,7 @@ void view_sub_edit_init(void)
     Widgets[e_subwidget_edit]->position.x = 59.0f;
     Widgets[e_subwidget_edit]->position.y = UI_CONTEXT_H - 3.0f;
     Widgets[e_subwidget_edit]->backgroundColor = sfWhite;
+    Widgets[e_subwidget_edit]->hasShadow = true;
     Widgets[e_subwidget_edit]->buttonCount = 7;
     Widgets[e_subwidget_edit]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_subwidget_edit]->buttonCount);

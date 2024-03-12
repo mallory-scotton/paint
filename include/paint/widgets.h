@@ -75,6 +75,7 @@ typedef struct widget_s {
     void (*customDraw)(widget_t *wid);
     bool hasCustomDraw;
     bool cursorOver;
+    bool hasShadow;
 } widget_t;
 
 typedef enum assets_e {

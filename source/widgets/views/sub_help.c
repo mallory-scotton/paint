@@ -31,6 +31,7 @@ void view_sub_help_init(void)
     Widgets[e_subwidget_help]->position.x = 503.0f;
     Widgets[e_subwidget_help]->position.y = UI_CONTEXT_H - 3.0f;
     Widgets[e_subwidget_help]->backgroundColor = sfWhite;
+    Widgets[e_subwidget_help]->hasShadow = true;
     Widgets[e_subwidget_help]->buttonCount = 2;
     Widgets[e_subwidget_help]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_subwidget_help]->buttonCount);

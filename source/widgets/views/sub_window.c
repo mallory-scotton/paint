@@ -32,6 +32,7 @@ void view_sub_window_init(void)
     Widgets[e_subwidget_window]->position.x = 337.0f;
     Widgets[e_subwidget_window]->position.y = UI_CONTEXT_H - 3.0f;
     Widgets[e_subwidget_window]->backgroundColor = sfWhite;
+    Widgets[e_subwidget_window]->hasShadow = true;
     Widgets[e_subwidget_window]->buttonCount = 3;
     Widgets[e_subwidget_window]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_subwidget_window]->buttonCount);
