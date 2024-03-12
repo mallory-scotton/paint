@@ -28,6 +28,7 @@ void view_init(void)
     view_sub_edit_init();
     view_sub_image_init();
     view_sub_layer_init();
+    view_sub_view_init();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
