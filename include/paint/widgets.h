@@ -35,6 +35,7 @@ typedef enum widget_list_e {
     e_subwidget_more,
     e_subwidget_help,
     e_subwidget_credit,
+    e_subwidget_tuto,
     e_subwidget_virtual_key,
     WIDGET_COUNT
 } widget_list_t;
@@ -270,6 +271,8 @@ void view_sub_more_init(void);
 void view_sub_help_init(void);
 void view_sub_view_init(void);
 void view_sub_layer_init(void);
+void view_sub_helpcredit(void);
+void view_sub_helptuto(void);
 void button_set_sub_context(button_t *btn, string text, vec2f pos,
     void (*onClick)(button_t *btn));
 

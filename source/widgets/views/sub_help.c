@@ -10,17 +10,16 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "paint.h"
 
-//! add widget that can be closed by button and some text
 static void credit(button_t *btn)
 {
     Widgets[e_subwidget_credit]->visible = true;
+    btn = btn;
 }
 
-//! add widget that can be closed by button and some text
 static void tuto(button_t *btn)
 {
+    Widgets[e_subwidget_tuto]->visible = true;
     btn = btn;
-    return;
 }
 
 static void view_sub_help_buttons(void)
@@ -47,12 +46,21 @@ void view_sub_help_init(void)
         Widgets[e_subwidget_help]->buttons[i]->index = i;
     }
     view_sub_help_buttons();
+    view_sub_helpcredit();
+    view_sub_helptuto();
     Widgets[e_subwidget_help]->visible = false;
 }
 
-static close_credit(button_t *btn)
+static void close_credit(button_t *btn)
 {
     Widgets[e_subwidget_credit]->visible = false;
+    btn = btn;
+}
+
+static void close_tuto(button_t *btn)
+{
+    Widgets[e_subwidget_tuto]->visible = false;
+    btn = btn;
 }
 
 void view_sub_credit_buttons(void)
@@ -79,4 +87,30 @@ void view_sub_helpcredit(void)
     }
     view_sub_credit_buttons();
     Widgets[e_subwidget_credit]->visible = false;
+}
+
+void view_sub_tuto_buttons(void)
+{
+    button_t **list = Widgets[e_subwidget_tuto]->buttons;
+
+    button_set_close(list[0], "X", VEC2(770, 0), &close_tuto);
+}
+
+void view_sub_helptuto(void)
+{
+    Widgets[e_subwidget_tuto]->size.x = 800.0f;
+    Widgets[e_subwidget_tuto]->size.y = 400.0f;
+    Widgets[e_subwidget_tuto]->position.x = 400.0f;
+    Widgets[e_subwidget_tuto]->position.y = 300.0f;
+    Widgets[e_subwidget_tuto]->backgroundColor = COLOR_BASE;
+    Widgets[e_subwidget_tuto]->hasShadow = true;
+    Widgets[e_subwidget_tuto]->buttonCount = 1;
+    Widgets[e_subwidget_tuto]->buttons = malloc(sizeof(button_t *) *
+        Widgets[e_subwidget_tuto]->buttonCount);
+    for (uint i = 0; i < Widgets[e_subwidget_tuto]->buttonCount; i++) {
+        Widgets[e_subwidget_tuto]->buttons[i] = malloc(sizeof(button_t));
+        Widgets[e_subwidget_tuto]->buttons[i]->index = i;
+    }
+    view_sub_tuto_buttons();
+    Widgets[e_subwidget_tuto]->visible = false;
 }
