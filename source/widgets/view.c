@@ -25,6 +25,9 @@ void view_init(void)
     view_tool_option_init();
     view_layers_init();
     view_sub_file_init();
+    view_sub_edit_init();
+    view_sub_image_init();
+    view_sub_layer_init();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
