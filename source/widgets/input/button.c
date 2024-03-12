@@ -158,8 +158,8 @@ void button_draw(widget_t *wid, button_t *btn)
         Tool->mousePressed = false;
     }
     draw_rounded_rectangle(btn->size, pos, btn->state == e_state_active ?
-        btn->backgroundColor : btn->hoverBackgroundColor, 5.0f);
-    if (btn->state == e_state_clicked)
+        btn->backgroundColor : btn->hoverBackgroundColor, btn->cornerRadius);
+    if (btn->state == e_state_clicked && btn->asAccent)
         button_draw_accent(btn, pos);
     DOIF(btn->icon != NULL, button_draw_icon(btn, pos));
     DOIF(btn->text != NULL, button_draw_text(btn, pos));

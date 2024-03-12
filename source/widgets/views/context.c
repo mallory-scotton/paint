@@ -19,6 +19,9 @@ static void show_subwidget(button_t *btn)
 
     for (int i = 0; i < 8; i++)
         Widgets[sub[i]]->visible = false;
+    for (uint i = 0; i < Widgets[e_widget_context]->buttonCount; i++)
+        Widgets[e_widget_context]->buttons[i]->state = e_state_active;
+    btn->state = e_state_clicked;
     Widgets[sub[btn->index]]->visible = true;
 }
 

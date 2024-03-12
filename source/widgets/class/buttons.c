@@ -41,6 +41,8 @@ void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
     btn->onClick = onClick;
     btn->textColor = sfTransparent;
     btn->iconColor = COLOR_TEXT;
+    btn->cornerRadius = 5.0f;
+    btn->asAccent = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -72,21 +74,25 @@ void button_set_context(button_t *btn, string text, vec2f pos,
     btn->onClick = onClick;
     btn->iconSize = VEC2(0, 0);
     btn->size = VEC2(-1.0f, 30.0f);
+    btn->cornerRadius = 5.0f;
+    btn->asAccent = false;
 }
 
 void button_set_sub_context(button_t *btn, string text, vec2f pos,
     void (*onClick)(button_t *btn))
 {
     btn->backgroundColor = sfTransparent;
-    btn->hoverBackgroundColor = sfBlue;
+    btn->hoverBackgroundColor = RGB(178, 216, 239);
     btn->text = my_strdup(text);
     btn->textColor = sfBlack;
-    btn->textSize = 18;
+    btn->textSize = 16;
     btn->icon = NULL;
     btn->state = e_state_active;
-    btn->padding = VEC2(12.0f, 4.0f);
+    btn->padding = VEC2(12.0f, 10.0f);
     btn->pos = pos;
     btn->onClick = onClick;
     btn->iconSize = VEC2(0, 0);
-    btn->size = VEC2(-1.0f, 40.0f);
+    btn->size = VEC2(200.0f, 40.0f);
+    btn->cornerRadius = 0.0f;
+    btn->asAccent = false;
 }

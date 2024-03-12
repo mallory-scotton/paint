@@ -55,7 +55,9 @@ typedef struct button_s {
     sfColor hoverBackgroundColor;
     sfColor textColor;
     sfColor iconColor;
+    float cornerRadius;
     string text;
+    bool asAccent;
     uint textSize;
     sfTexture *icon;
     vec2f iconSize;
@@ -259,5 +261,7 @@ void view_context_init(void);
 void view_layers_init(void);
 void view_tool_option_init(void);
 void view_sub_file_init(void);
+void button_set_sub_context(button_t *btn, string text, vec2f pos,
+    void (*onClick)(button_t *btn));
 
 #endif /* !WIDGETS_H_ */
