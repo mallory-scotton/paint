@@ -30,6 +30,7 @@ void view_init(void)
     view_sub_layer_init();
     view_sub_view_init();
     view_sub_window_init();
+    view_sub_more_init();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
