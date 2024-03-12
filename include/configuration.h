@@ -36,6 +36,12 @@
     #define VIEW_WIDTH 512
     #define VIEW_HEIGHT 288
 
+    #define TXT_NW "New...                       "
+    #define TXT_OP "Open...                     "
+    #define TXT_SV "Save                         "
+    #define TXT_SA "Save as                 > "
+    #define TXT_EA "Export as             > "
+
 ///////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////

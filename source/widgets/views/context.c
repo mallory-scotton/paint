@@ -10,6 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "paint.h"
 
+//!work here
 static void show_subwidget(button_t *btn)
 {
     widget_list_t sub[8] = {e_subwidget_file, e_subwidget_edit,

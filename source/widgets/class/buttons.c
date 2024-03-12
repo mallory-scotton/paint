@@ -73,3 +73,20 @@ void button_set_context(button_t *btn, string text, vec2f pos,
     btn->iconSize = VEC2(0, 0);
     btn->size = VEC2(-1.0f, 30.0f);
 }
+
+void button_set_sub_context(button_t *btn, string text, vec2f pos,
+    void (*onClick)(button_t *btn))
+{
+    btn->backgroundColor = sfTransparent;
+    btn->hoverBackgroundColor = sfBlue;
+    btn->text = my_strdup(text);
+    btn->textColor = sfBlack;
+    btn->textSize = 18;
+    btn->icon = NULL;
+    btn->state = e_state_active;
+    btn->padding = VEC2(12.0f, 4.0f);
+    btn->pos = pos;
+    btn->onClick = onClick;
+    btn->iconSize = VEC2(0, 0);
+    btn->size = VEC2(-1.0f, 40.0f);
+}

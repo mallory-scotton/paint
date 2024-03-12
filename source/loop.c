@@ -23,6 +23,7 @@ static void use_tool(void)
     DOIF(Tool->type == e_tool_bucket, use_bucket_tool());
 }
 
+//! TEMP
 static void draw_cursor(void)
 {
     sfCircleShape *c = sfCircleShape_create();
