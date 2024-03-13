@@ -103,7 +103,7 @@ void button_set_close(button_t *btn, string Text, vec2f pos,
     btn->backgroundColor = sfTransparent;
     btn->hoverBackgroundColor = COLOR_BG_INPUT;
     btn->text = my_strdup(Text);
-    btn->textColor = sfBlack;
+    btn->textColor = COLOR_TEXT;
     btn->textSize = 16;
     btn->icon = NULL;
     btn->state = e_state_active;
