@@ -65,8 +65,8 @@ static void need_cursor(void)
 ///////////////////////////////////////////////////////////////////////////////
 void loop(void)
 {
-    view_init();
     canvas_add(1920, 1080, "hello", sfWhite);
+    view_init();
     while (sfRenderWindow_isOpen(Win->self)) {
         events();
         check_view_collisions();
