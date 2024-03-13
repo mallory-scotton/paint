@@ -10,6 +10,19 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "paint.h"
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws a range of color quads representing different color shades.
+///
+/// This function draws a range of color quads representing different color
+/// shades from the specified start color to the specified end color.
+///
+/// \param pos The position of the top-left corner of the color range picker.
+/// \param start The start color of the color range.
+/// \param end The end color of the color range.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
 static void draw_color_quads(vec2f pos, sfColor start, sfColor end)
 {
     sfVertexArray *arr = sfVertexArray_create();
@@ -23,6 +36,17 @@ static void draw_color_quads(vec2f pos, sfColor start, sfColor end)
     sfVertexArray_destroy(arr);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Converts a color to a Y offset within the color range picker.
+///
+/// This function calculates the Y offset within the color range picker
+/// corresponding to the given color.
+///
+/// \param c The color to convert to a Y offset.
+///
+/// \return The Y offset within the color range picker.
+///
+///////////////////////////////////////////////////////////////////////////////
 static float color_to_offset(sfColor c)
 {
     if (c.r == 255 && c.g == 0 && (c.b < 255 || c.b == 255))
@@ -38,6 +62,17 @@ static float color_to_offset(sfColor c)
     return (((float)(255 - c.g) / 255) * UI_CLR_R_Q + UI_CLR_R_Q * 5);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Converts a Y offset within the color range picker to a color.
+///
+/// This function calculates the color corresponding to the given Y offset
+/// within the color range picker.
+///
+/// \param offset The Y offset within the color range picker.
+///
+/// \return The color corresponding to the Y offset.
+///
+///////////////////////////////////////////////////////////////////////////////
 static sfColor offset_to_color(float offset)
 {
     int quad = (int)offset / UI_CLR_R_Q;
@@ -56,6 +91,18 @@ static sfColor offset_to_color(float offset)
     return (color);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws a caret indicating the current selected color in the color
+/// range picker.
+///
+/// This function draws a caret indicating the current selected color in the
+/// color range picker at the specified position.
+///
+/// \param pos The position of the caret in the color range picker.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
 static void draw_caret(vec2f pos)
 {
     sfRectangleShape *caret = sfRectangleShape_create();
@@ -68,6 +115,16 @@ static void draw_caret(vec2f pos)
     sfRectangleShape_destroy(caret);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws the color range picker.
+///
+/// This function draws the color range picker at the specified position.
+///
+/// \param pos The position of the top-left corner of the color range picker.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
 static void draw_color_picker_range(vec2f pos)
 {
     draw_color_quads(pos, RGB(255, 0, 0), RGB(255, 0, 255));
@@ -84,6 +141,17 @@ static void draw_color_picker_range(vec2f pos)
     draw_caret(pos);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws color samples representing different colors.
+///
+/// This function draws color samples representing different colors at the
+/// specified position.
+///
+/// \param pos The position of the color samples.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
 static void draw_color_samples(vec2f pos)
 {
     draw_rounded_rectangle(VEC2(25.0f, 25.0f), pos, RGB(255, 255, 255), 5);
@@ -103,6 +171,17 @@ static void draw_color_samples(vec2f pos)
         RGB(255, 255, 0), 5.0f);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws the alpha slider of the color picker.
+///
+/// This function draws the alpha slider of the color picker at the specified
+/// position.
+///
+/// \param pos The position of the top-left corner of the alpha slider.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
 static void draw_color_picker_alpha(vec2f pos)
 {
     sfVertexArray *arr = sfVertexArray_create();
@@ -116,6 +195,18 @@ static void draw_color_picker_alpha(vec2f pos)
     sfVertexArray_destroy(arr);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws the entire color picker interface.
+///
+/// This function draws the entire color picker interface at the specified
+/// position.
+///
+/// \param pos The position of the top-left corner of the color picker
+/// interface.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
 void draw_color_picker(vec2f pos)
 {
     draw_color_picker_alpha(pos);
