@@ -50,6 +50,29 @@
     #define TV2(vec) VEC2(vec.x, vec.y)
 
 typedef struct canvas_s canvas_t;
+typedef struct layer_s layer_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \struct layer_s
+///
+/// \brief Structure representing a layer in the canvas.
+///
+/// This structure defines a layer in the canvas, which contains information
+/// such as the layer's name, visibility, opacity, dimensions, position,
+/// pixel data, and a pointer to the next layer.
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct layer_s {
+    string name;
+    bool locked;
+    bool hided;
+    float opacity;
+    uint width;
+    uint height;
+    vec2f position;
+    sfUint8 *pixels;
+    layer_t *next;
+} layer_t;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Definition of the canvas structure.
@@ -105,6 +128,7 @@ typedef struct tool_s {
     vec2i oldMousePos;
     bool wasMousePressed;
     sfColor primaryColor;
+    vec2f colorPos;
 } tool_t;
 
 /// Pointer to the active canvas list.

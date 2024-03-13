@@ -10,6 +10,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "paint.h"
 
+static bool has_focus;
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Draws a range of color quads representing different color shades.
 ///
@@ -196,6 +198,57 @@ static void draw_color_picker_alpha(vec2f pos)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws a color caret at a specified position.
+///
+/// This function draws a color caret at the specified position on the canvas.
+///
+/// \param pos The position of the caret on the canvas.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
+static void draw_caret_color(vec2f pos)
+{
+    sfCircleShape *caret = sfCircleShape_create();
+
+    sfCircleShape_setRadius(caret, 8.0f);
+    sfCircleShape_setFillColor(caret, Tool->color);
+    sfCircleShape_setOutlineThickness(caret, 1.5f);
+    sfCircleShape_setOutlineColor(caret, RGB(150, 150, 150));
+    sfCircleShape_setOrigin(caret, VEC2(8.0f, 8.0f));
+    sfCircleShape_setPosition(caret, Vec2.add(pos, Tool->colorPos));
+    sfRenderWindow_drawCircleShape(Win->self, caret, NULL);
+    sfCircleShape_destroy(caret);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Converts a position on the canvas to a color.
+///
+/// This function converts a position on the canvas to a color, considering
+/// the primary color and the position of the mouse pointer.
+///
+/// \param pos The position on the canvas where the color is sampled.
+/// \param mousePos The current position of the mouse pointer.
+///
+/// \return The color sampled from the canvas.
+///
+///////////////////////////////////////////////////////////////////////////////
+static sfColor pos_to_color(vec2f pos, vec2f mousePos)
+{
+    vec2f mp = Vec2.subtract(mousePos, pos);
+    sfColor color = RGB(0, 0, 0);
+    sfColor c = Tool->primaryColor;
+
+    mp.x = CLAMP(mp.x, 0, UI_CLR_A_S) / UI_CLR_A_S;
+    mp.y = CLAMP(mp.y, 0, UI_CLR_A_S) / UI_CLR_A_S;
+    color.r = (1 - mp.y) * ((1 - mp.x) * 255 + mp.x * c.r);
+    color.g = (1 - mp.y) * ((1 - mp.x) * 255 + mp.x * c.g);
+    color.b = (1 - mp.y) * ((1 - mp.x) * 255 + mp.x * c.b);
+    Tool->colorPos = Vec2.multiply(mp, (float)UI_CLR_A_S);
+    return (color);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Draws the entire color picker interface.
 ///
 /// This function draws the entire color picker interface at the specified
@@ -209,12 +262,20 @@ static void draw_color_picker_alpha(vec2f pos)
 ///////////////////////////////////////////////////////////////////////////////
 void draw_color_picker(vec2f pos)
 {
+    DOIF(!Tool->mousePressed, has_focus = false);
+    DOIF(has_focus, Win->cursorOnWidget = true);
     draw_color_picker_alpha(pos);
     draw_color_picker_range(VEC2(pos.x + UI_CLR_A_S, pos.y));
     draw_rounded_rectangle(VEC2(UI_CLR_A_S + UI_CLR_R_W, 25),
         VEC2(pos.x, pos.y + UI_CLR_A_S + 10), Tool->color, 5.0f);
     draw_color_samples(VEC2(pos.x, pos.y + UI_CLR_A_S + 45.0f));
     if (Tool->mousePressed && mouse_in(VEC2(pos.x + UI_CLR_A_S, pos.y),
-        VEC2(UI_CLR_R_W, UI_CLR_A_S)))
+        VEC2(UI_CLR_R_W, UI_CLR_A_S)) && !has_focus) {
         Tool->primaryColor = offset_to_color(Tool->mousePos.y - pos.y);
+        Tool->color = pos_to_color(pos, Vec2.add(Tool->colorPos, pos));
+    }
+    if (Tool->mousePressed && mouse_in(pos, VEC2(UI_CLR_A_S, UI_CLR_A_S)))
+        has_focus = true;
+    DOIF(has_focus, Tool->color = pos_to_color(pos, TV2(Tool->mousePos)));
+    draw_caret_color(pos);
 }

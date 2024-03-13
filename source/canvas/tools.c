@@ -30,4 +30,5 @@ void tool_init(void)
     Tool->mousePressed = false;
     Tool->wasMousePressed = false;
     Tool->primaryColor = sfRed;
+    Tool->colorPos = VEC2(0, UI_CLR_A_S);
 }
