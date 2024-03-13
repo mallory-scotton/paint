@@ -10,6 +10,16 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "paint.h"
 
+static void zoom_in(button_t *btn)
+{
+    btn = btn;
+}
+
+static void zoom_out(button_t *btn)
+{
+    btn = btn;
+}
+
 static void show_it(button_t *btn)
 {
     btn = btn;
@@ -20,7 +30,7 @@ static void view_sub_view_buttons(void)
 {
     button_t **list = Widgets[e_subwidget_view]->buttons;
 
-    button_set_sub_context(list[0], "Zoom in", VEC2(0, 0), &show_it);
+    button_set_sub_context(list[0], "Zoom in", VEC2(0, 0), &zoom_in);
     button_set_sub_context(list[1], "Zoom out", VEC2(0, 40), &show_it);
     button_set_sub_context(list[2], "Fit the area", VEC2(0, 80), &show_it);
     button_set_sub_context(list[3], "Pixel to pixel", VEC2(0, 120), &show_it);

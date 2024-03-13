@@ -63,13 +63,13 @@ static void close_credit(button_t *btn)
     btn = btn;
 }
 
-static void close_tuto(button_t *btn)
+void close_tuto(button_t *btn)
 {
     Widgets[e_subwidget_tuto]->visible = false;
     btn = btn;
 }
 
-void nothin(button_t *btn)
+static void nothin(button_t *btn)
 {
     btn = btn;
 }
@@ -79,7 +79,8 @@ void view_sub_credit_buttons(void)
     button_t **list = Widgets[e_subwidget_credit]->buttons;
 
     button_set_close(list[0], "X", VEC2(770, 0), &close_credit);
-    button_set_context(list[1], "Presented\nby\nMallory and Hugo\nBitch", VEC2(400, 200), &nothin);
+    button_set_context(list[1], "Presented\nby\nMallory and Hugo\nBitch",
+        VEC2(400, 200), &nothin);
 }
 
 void view_sub_helpcredit(void)
@@ -99,25 +100,6 @@ void view_sub_helpcredit(void)
     }
     view_sub_credit_buttons();
     Widgets[e_subwidget_credit]->visible = false;
-}
-
-void view_sub_tuto_buttons(void)
-{
-    button_t **list = Widgets[e_subwidget_tuto]->buttons;
-
-    button_set_close(list[0], "X", VEC2(770, 0), &close_tuto);
-}
-
-void tutorial(widget_t *wig)
-{
-    sfText *t = sfText_create();
-
-    sfText_setFont(t, OpenSans);
-    sfText_setPosition(t, Vec2.add(wig->position, VEC2(30.0f, 30.0f)));
-    sfText_setString(t, "This is a tutorial for some dumb peoplel ike you\nYou can try thing you like or go fuck your mothe");
-    sfText_setCharacterSize(t, 20);
-    sfRenderWindow_drawText(Win->self, t, NULL);
-    wig = wig;
 }
 
 void view_sub_helptuto(void)
