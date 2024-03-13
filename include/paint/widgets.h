@@ -33,6 +33,8 @@ typedef enum widget_list_e {
     e_subwidget_view,
     e_subwidget_window,
     e_subwidget_more,
+    e_subwidget_about,
+    e_subwidget_shortcut,
     e_subwidget_help,
     e_subwidget_credit,
     e_subwidget_tuto,
@@ -263,6 +265,7 @@ void check_view_collisions(void);
 void view_context_init(void);
 void view_layers_init(void);
 void view_tool_option_init(void);
+
 void view_sub_file_init(void);
 void view_sub_edit_init(void);
 void view_sub_window_init(void);
@@ -273,12 +276,22 @@ void view_sub_view_init(void);
 void view_sub_layer_init(void);
 void view_sub_helpcredit(void);
 void view_sub_helptuto(void);
-void tutorial(widget_t *wig);
+
 void close_tuto(button_t *btn);
+void tutorial(widget_t *wig);
+void credit_text(widget_t *wig);
+
+void about(widget_t *wig);
+void shortcut(widget_t *wig);
+void close_about(button_t *btn);
+void close_shortcut(button_t *btn);
+
 void button_set_sub_context(button_t *btn, string text, vec2f pos,
     void (*onClick)(button_t *btn));
 void button_set_close(button_t *btn, string Text, vec2f pos,
     void (*onClick)(button_t *btn));
+void view_sub_tuto_buttons(void);
+
 void fit_area(button_t *btn);
 
 #endif /* !WIDGETS_H_ */

@@ -69,18 +69,11 @@ void close_tuto(button_t *btn)
     btn = btn;
 }
 
-static void nothin(button_t *btn)
-{
-    btn = btn;
-}
-
 void view_sub_credit_buttons(void)
 {
     button_t **list = Widgets[e_subwidget_credit]->buttons;
 
     button_set_close(list[0], "X", VEC2(770, 0), &close_credit);
-    button_set_context(list[1], "Presented\nby\nMallory and Hugo\nBitch",
-        VEC2(400, 200), &nothin);
 }
 
 void view_sub_helpcredit(void)
@@ -91,7 +84,7 @@ void view_sub_helpcredit(void)
     Widgets[e_subwidget_credit]->position.y = 300.0f;
     Widgets[e_subwidget_credit]->backgroundColor = COLOR_BASE;
     Widgets[e_subwidget_credit]->hasShadow = true;
-    Widgets[e_subwidget_credit]->buttonCount = 2;
+    Widgets[e_subwidget_credit]->buttonCount = 1;
     Widgets[e_subwidget_credit]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_subwidget_credit]->buttonCount);
     for (uint i = 0; i < Widgets[e_subwidget_credit]->buttonCount; i++) {
@@ -99,6 +92,8 @@ void view_sub_helpcredit(void)
         Widgets[e_subwidget_credit]->buttons[i]->index = i;
     }
     view_sub_credit_buttons();
+    Widgets[e_subwidget_credit]->hasCustomDraw = true;
+    Widgets[e_subwidget_credit]->customDraw = &credit_text;
     Widgets[e_subwidget_credit]->visible = false;
 }
 
