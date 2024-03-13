@@ -107,7 +107,7 @@ void button_set_close(button_t *btn, string Text, vec2f pos,
     btn->textSize = 16;
     btn->icon = NULL;
     btn->state = e_state_active;
-    btn->padding = VEC2(12.0f, 7.5f);
+    btn->padding = VEC2(11.5f, 6.0f);
     btn->pos = pos;
     btn->onClick = onClick;
     btn->iconSize = VEC2(0, 0);
