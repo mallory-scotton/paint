@@ -13,11 +13,11 @@
 //!work here
 static void show_subwidget(button_t *btn)
 {
-    widget_list_t sub[8] = {e_subwidget_file, e_subwidget_edit,
+    widget_list_t sub[7] = {e_subwidget_file, e_subwidget_edit,
         e_subwidget_image, e_subwidget_layer, e_subwidget_view,
-        e_subwidget_window, e_subwidget_more, e_subwidget_help};
+        e_subwidget_window, e_subwidget_help};
 
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 7; i++)
         Widgets[sub[i]]->visible = false;
     for (uint i = 0; i < Widgets[e_widget_context]->buttonCount; i++)
         Widgets[e_widget_context]->buttons[i]->state = e_state_active;
@@ -35,8 +35,7 @@ static void view_context_buttons(void)
     button_set_context(list[3], "Layer", VEC2(196, 6), &show_subwidget);
     button_set_context(list[4], "View", VEC2(269, 6), &show_subwidget);
     button_set_context(list[5], "Window", VEC2(337, 6), &show_subwidget);
-    button_set_context(list[6], "More", VEC2(434, 6), &show_subwidget);
-    button_set_context(list[7], "Help", VEC2(503, 6), &show_subwidget);
+    button_set_context(list[6], "Help", VEC2(434, 6), &show_subwidget);
 }
 
 void view_context_init(void)
@@ -46,7 +45,7 @@ void view_context_init(void)
     Widgets[e_widget_context]->position.x = 0;
     Widgets[e_widget_context]->position.y = 0;
     Widgets[e_widget_context]->backgroundColor = COLOR_BASE;
-    Widgets[e_widget_context]->buttonCount = 8;
+    Widgets[e_widget_context]->buttonCount = 7;
     Widgets[e_widget_context]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_widget_context]->buttonCount);
     for (uint i = 0; i < Widgets[e_widget_context]->buttonCount; i++) {

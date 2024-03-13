@@ -34,17 +34,18 @@ static void view_sub_help_buttons(void)
 
     button_set_sub_context(list[0], "Tutorial", VEC2(0, 0), &tuto);
     button_set_sub_context(list[1], "Credits", VEC2(0, 40), &credit);
+    button_set_sub_context(list[2], "Shortcuts", VEC2(0, 80), &shortcut_open);
 }
 
 void view_sub_help_init(void)
 {
     Widgets[e_subwidget_help]->size.x = UI_DROPDOWN_W;
-    Widgets[e_subwidget_help]->size.y = 2 * 40.0f;
-    Widgets[e_subwidget_help]->position.x = 503.0f;
+    Widgets[e_subwidget_help]->size.y = 3 * 40.0f;
+    Widgets[e_subwidget_help]->position.x = 434.0f;
     Widgets[e_subwidget_help]->position.y = UI_CONTEXT_H - 3.0f;
     Widgets[e_subwidget_help]->backgroundColor = sfWhite;
     Widgets[e_subwidget_help]->hasShadow = true;
-    Widgets[e_subwidget_help]->buttonCount = 2;
+    Widgets[e_subwidget_help]->buttonCount = 3;
     Widgets[e_subwidget_help]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_subwidget_help]->buttonCount);
     for (uint i = 0; i < Widgets[e_subwidget_help]->buttonCount; i++) {

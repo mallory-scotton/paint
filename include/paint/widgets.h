@@ -32,10 +32,9 @@ typedef enum widget_list_e {
     e_subwidget_layer,
     e_subwidget_view,
     e_subwidget_window,
-    e_subwidget_more,
+    e_subwidget_help,
     e_subwidget_about,
     e_subwidget_shortcut,
-    e_subwidget_help,
     e_subwidget_credit,
     e_subwidget_tuto,
     e_subwidget_virtual_key,
@@ -283,10 +282,9 @@ void close_tuto(button_t *btn);
 void tutorial(widget_t *wig);
 void credit_text(widget_t *wig);
 
-void about(widget_t *wig);
 void shortcut(widget_t *wig);
-void close_about(button_t *btn);
 void close_shortcut(button_t *btn);
+void shortcut_open(button_t *btn);
 
 void button_set_sub_context(button_t *btn, string text, vec2f pos,
     void (*onClick)(button_t *btn));
