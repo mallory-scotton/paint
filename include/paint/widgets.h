@@ -277,5 +277,8 @@ void tutorial(widget_t *wig);
 void close_tuto(button_t *btn);
 void button_set_sub_context(button_t *btn, string text, vec2f pos,
     void (*onClick)(button_t *btn));
+void button_set_close(button_t *btn, string Text, vec2f pos,
+    void (*onClick)(button_t *btn));
+void fit_area(button_t *btn);
 
 #endif /* !WIDGETS_H_ */

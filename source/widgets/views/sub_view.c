@@ -10,20 +10,42 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "paint.h"
 
+void fit_area(button_t *btn)
+{
+    float max_width = WIN_WIDTH - UI_TOOLBAR_W - UI_LAYERS_W - 100;
+    float max_height = WIN_HEIGHT - UI_CONTEXT_H - UI_TOOL_H - 100;
+    float calculus = max_width / Tool->canva->width;
+    float decalcul = max_height / Tool->canva->height;
+    float scale = calculus < decalcul ? calculus : decalcul;
+
+    Widgets[e_subwidget_view]->visible = false;
+    for (uint i = 0; i < Widgets[e_widget_context]->buttonCount; i++)
+        Widgets[e_widget_context]->buttons[i]->state = e_state_active;
+    Tool->canva->scale = VEC2(scale, scale);
+    Tool->canva->position = VEC2((max_width / 2.0f) + UI_TOOLBAR_W + 50,
+        (max_height / 2.0f) + UI_CONTEXT_H + UI_TOOL_H + 50);
+    btn = btn;
+}
+
 static void zoom_in(button_t *btn)
 {
+    Tool->canva->scale = Vec2.add(Tool->canva->scale, VEC2(0.03f, 0.03f));
     btn = btn;
 }
 
 static void zoom_out(button_t *btn)
 {
+    Tool->canva->scale = Vec2.subtract(Tool->canva->scale, VEC2(0.03f, 0.03f));
     btn = btn;
 }
 
-static void show_it(button_t *btn)
+void pixel(button_t *btn)
 {
+    Widgets[e_subwidget_view]->visible = false;
+    for (uint i = 0; i < Widgets[e_widget_context]->buttonCount; i++)
+        Widgets[e_widget_context]->buttons[i]->state = e_state_active;
+    Tool->canva->scale = VEC2(1.0f, 1.0f);
     btn = btn;
-    return;
 }
 
 static void view_sub_view_buttons(void)
@@ -31,9 +53,9 @@ static void view_sub_view_buttons(void)
     button_t **list = Widgets[e_subwidget_view]->buttons;
 
     button_set_sub_context(list[0], "Zoom in", VEC2(0, 0), &zoom_in);
-    button_set_sub_context(list[1], "Zoom out", VEC2(0, 40), &show_it);
-    button_set_sub_context(list[2], "Fit the area", VEC2(0, 80), &show_it);
-    button_set_sub_context(list[3], "Pixel to pixel", VEC2(0, 120), &show_it);
+    button_set_sub_context(list[1], "Zoom out", VEC2(0, 40), &zoom_out);
+    button_set_sub_context(list[2], "Fit the area", VEC2(0, 80), &fit_area);
+    button_set_sub_context(list[3], "Pixel to pixel", VEC2(0, 120), &pixel);
 }
 
 void view_sub_view_init(void)
