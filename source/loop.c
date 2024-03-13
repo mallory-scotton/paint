@@ -42,6 +42,12 @@ static void draw_cursor(void)
 
 static void need_cursor(void)
 {
+    if (Tool->mousePressed) {
+        for (uint i = 0; i < Widgets[e_widget_context]->buttonCount; i++) {
+            Widgets[e_subwidget_file + i]->visible = false;
+            Widgets[e_widget_context]->buttons[i]->state = e_state_active;
+        }
+    }
     if (!Win->cursorOnWidget && (Tool->type == e_tool_brush ||
         Tool->type == e_tool_eraser || Tool->type == e_tool_pencil)) {
         draw_cursor();
