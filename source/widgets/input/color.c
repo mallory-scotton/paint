@@ -23,26 +23,47 @@ static void draw_color_quads(vec2f pos, sfColor start, sfColor end)
     sfVertexArray_destroy(arr);
 }
 
-/*
-TODO: parse Tool->primaryColor to get the Y offset based on the colors
-! The color could be anywhere between those numbers
-! e.g: Tool->primaryColor = RGB(255, 0, 134) should be equal to ...
-255,    000,    000         ==> (0 * UI_CLR_R_Q)px
-255,    000,    255         ==> (1 * UI_CLR_R_Q)px
-000,    000,    255         ==> (2 * UI_CLR_R_Q)px
-000,    255,    255         ==> (3 * UI_CLR_R_Q)px
-000,    255,    000         ==> (4 * UI_CLR_R_Q)px
-255,    255,    000         ==> (5 * UI_CLR_R_Q)px
-255,    000,    000         ==> (6 * UI_CLR_R_Q)px
-*/
-static void draw_carret(vec2f pos)
+static float color_to_offset(sfColor c)
+{
+    if (c.r == 255 && c.g == 0 && (c.b < 255 || c.b == 255))
+        return (((float)(c.b) / 255) * UI_CLR_R_Q);
+    if ((c.r < 255 || c.r == 255) && c.g == 0 && c.b == 255)
+        return (((float)(255 - c.r) / 255) * UI_CLR_R_Q + UI_CLR_R_Q);
+    if (c.r == 0 && (c.g < 255 || c.g == 255) && c.b == 255)
+        return (((float)(c.g) / 255) * UI_CLR_R_Q + UI_CLR_R_Q * 2);
+    if (c.r == 0 && c.g == 255 && (c.b < 255 || c.b == 255))
+        return (((float)(255 - c.b) / 255) * UI_CLR_R_Q + UI_CLR_R_Q * 3);
+    if ((c.r < 255 || c.r == 255) && c.g == 255 && c.b == 0)
+        return (((float)(c.r) / 255) * UI_CLR_R_Q + UI_CLR_R_Q * 4);
+    return (((float)(255 - c.g) / 255) * UI_CLR_R_Q + UI_CLR_R_Q * 5);
+}
+
+static sfColor offset_to_color(float offset)
+{
+    int quad = (int)offset / UI_CLR_R_Q;
+    sfColor color = RGB(0, 0, 0);
+
+    offset -= (quad * UI_CLR_R_Q);
+    DOIF(quad == 0 || quad == 5, color.r = 255);
+    DOIF(quad == 3 || quad == 4, color.g = 255);
+    DOIF(quad == 1 || quad == 2, color.b = 255);
+    DOIF(quad == 0, color.b = (offset * 255 / UI_CLR_R_Q));
+    DOIF(quad == 1, color.r = 255 - (offset * 255 / UI_CLR_R_Q));
+    DOIF(quad == 2, color.g = (offset * 255 / UI_CLR_R_Q));
+    DOIF(quad == 3, color.b = 255 - (offset * 255 / UI_CLR_R_Q));
+    DOIF(quad == 4, color.r = (offset * 255 / UI_CLR_R_Q));
+    DOIF(quad == 5, color.g = 255 - (offset * 255 / UI_CLR_R_Q));
+    return (color);
+}
+
+static void draw_caret(vec2f pos)
 {
     sfRectangleShape *caret = sfRectangleShape_create();
-    vec2f offset = {0, 0};
+    float offsetY = color_to_offset(Tool->primaryColor);
 
-    sfRectangleShape_setSize(caret, VEC2(UI_CLR_R_W, 3.0f));
+    sfRectangleShape_setSize(caret, VEC2(UI_CLR_R_W, 2.0f));
     sfRectangleShape_setFillColor(caret, sfWhite);
-    sfRectangleShape_setPosition(caret, Vec2.add(pos, offset));
+    sfRectangleShape_setPosition(caret, Vec2.add(pos, VEC2(0.0f, offsetY)));
     sfRenderWindow_drawRectangleShape(Win->self, caret, NULL);
     sfRectangleShape_destroy(caret);
 }
@@ -60,7 +81,26 @@ static void draw_color_picker_range(vec2f pos)
         RGB(0, 255, 0), RGB(255, 255, 0));
     draw_color_quads(VEC2(pos.x, pos.y + UI_CLR_R_Q * 5),
         RGB(255, 255, 0), RGB(255, 0, 0));
-    draw_carret(pos);
+    draw_caret(pos);
+}
+
+static void draw_color_samples(vec2f pos)
+{
+    draw_rounded_rectangle(VEC2(25.0f, 25.0f), pos, RGB(255, 255, 255), 5);
+    draw_rounded_rectangle(VEC2(25.0f, 25.0f), VEC2(pos.x + 30.0f, pos.y),
+        RGB(0, 0, 0), 5.0f);
+    draw_rounded_rectangle(VEC2(25.0f, 25.0f), VEC2(pos.x + 60.0f, pos.y),
+        RGB(255, 0, 0), 5.0f);
+    draw_rounded_rectangle(VEC2(25.0f, 25.0f), VEC2(pos.x + 90.0f, pos.y),
+        RGB(0, 255, 0), 5.0f);
+    draw_rounded_rectangle(VEC2(25.0f, 25.0f), VEC2(pos.x + 120.0f, pos.y),
+        RGB(0, 0, 255), 5.0f);
+    draw_rounded_rectangle(VEC2(25.0f, 25.0f), VEC2(pos.x + 150.0f, pos.y),
+        RGB(255, 0, 255), 5.0f);
+    draw_rounded_rectangle(VEC2(25.0f, 25.0f), VEC2(pos.x + 180.0f, pos.y),
+        RGB(0, 255, 255), 5.0f);
+    draw_rounded_rectangle(VEC2(25.0f, 25.0f), VEC2(pos.x + 210.0f, pos.y),
+        RGB(255, 255, 0), 5.0f);
 }
 
 static void draw_color_picker_alpha(vec2f pos)
@@ -82,4 +122,8 @@ void draw_color_picker(vec2f pos)
     draw_color_picker_range(VEC2(pos.x + UI_CLR_A_S, pos.y));
     draw_rounded_rectangle(VEC2(UI_CLR_A_S + UI_CLR_R_W, 25),
         VEC2(pos.x, pos.y + UI_CLR_A_S + 10), Tool->color, 5.0f);
+    draw_color_samples(VEC2(pos.x, pos.y + UI_CLR_A_S + 45.0f));
+    if (Tool->mousePressed && mouse_in(VEC2(pos.x + UI_CLR_A_S, pos.y),
+        VEC2(UI_CLR_R_W, UI_CLR_A_S)))
+        Tool->primaryColor = offset_to_color(Tool->mousePos.y - pos.y);
 }
