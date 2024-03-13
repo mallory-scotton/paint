@@ -91,6 +91,9 @@
     #define UI_TOOLBAR_H (WIN_HEIGHT - UI_TOOL_H - UI_CONTEXT_H)
     #define UI_LAYERS_W 300
     #define UI_LAYERS_H UI_TOOLBAR_H
+    #define UI_CLR_A_S 210
+    #define UI_CLR_R_Q (UI_CLR_A_S / 6)
+    #define UI_CLR_R_W 25
     #define UI_DROPDOWN_W 200
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -227,5 +227,7 @@
 ///////////////////////////////////////////////////////////////////////////////
     #define PRESSED(x) sfKeyboard_isKeyPressed(x)
     #define SPRITE_DRAW(s) sfRenderWindow_drawSprite(Win->self, s, NULL)
+    #define APPEND sfVertexArray_append
+    #define VERTEX(pos, clr) ((sfVertex){.position = pos, .color = clr})
 
 #endif /* !MACROS_H_ */

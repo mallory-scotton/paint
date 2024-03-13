@@ -29,4 +29,5 @@ void tool_init(void)
     Tool->oldMousePos = VEC2I(0, 0);
     Tool->mousePressed = false;
     Tool->wasMousePressed = false;
+    Tool->primaryColor = sfRed;
 }

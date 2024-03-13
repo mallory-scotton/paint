@@ -104,6 +104,7 @@ typedef struct tool_s {
     vec2i mousePos;
     vec2i oldMousePos;
     bool wasMousePressed;
+    sfColor primaryColor;
 } tool_t;
 
 /// Pointer to the active canvas list.
@@ -226,5 +227,7 @@ void save_image(string path);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void open_image(string path);
+
+void draw_color_picker(vec2f pos);
 
 #endif /* !CANVAS_H_ */
