@@ -49,7 +49,9 @@ static void need_cursor(void)
         }
     }
     if (!Win->cursorOnWidget && (Tool->type == e_tool_brush ||
-        Tool->type == e_tool_eraser || Tool->type == e_tool_pencil)) {
+        Tool->type == e_tool_eraser || Tool->type == e_tool_pencil) &&
+        Tool->mousePos.x >= 0 && Tool->mousePos.x < WIN_WIDTH &&
+        Tool->mousePos.y >= 0 && Tool->mousePos.y < WIN_HEIGHT) {
         draw_cursor();
         sfRenderWindow_setMouseCursorVisible(Win->self, false);
     } else {
