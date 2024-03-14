@@ -27,6 +27,7 @@ static void view_sub_file_buttons(void)
     list[0]->subText = my_strdup("ALT+CTRL+N");
     list[1]->subText = my_strdup("CTRL+O");
     list[2]->subText = my_strdup("CTRL+S");
+    list[3]->subText = my_strdup(">");
 }
 
 static void custom_sub_file_draw(widget_t *wid)
