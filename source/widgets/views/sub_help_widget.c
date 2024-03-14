@@ -38,8 +38,8 @@ void credit_text(widget_t *wig)
 {
     sfText *t = sfText_create();
     string text = "Presented by Mallory Scotton and Hugo Cathealain.\n\nProje";
-    string txt = "ct at Epitech in 2024 named MyPaint.";
-    string tex = "";
+    string txt = "ct at Epitech in 2024 named MyPaint.\n\n\n\nmallory.scotton";
+    string tex = "@epitech.eu\nhugo.cathelain@epitech.eu";
 
     text = my_strdcat(text, txt, tex);
     sfText_setFont(t, OpenSans);
