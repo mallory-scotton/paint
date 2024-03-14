@@ -31,6 +31,5 @@ void tool_init(void)
     Tool->wasMousePressed = false;
     Tool->primaryColor = sfRed;
     Tool->colorPos = VEC2(0, UI_CLR_A_S);
-    Tool->focused = false;
-    Tool->input = my_buffinit();
+    Tool->focus = NULL;
 }
