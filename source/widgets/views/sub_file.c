@@ -13,7 +13,13 @@
 static void show_it(button_t *btn)
 {
     btn = btn;
-    return;
+}
+
+static void open_it(button_t *btn)
+{
+    btn = btn;
+    open_image("tests/images/takumi.jpg");
+    Tool->mousePressed = false;
 }
 
 static void view_sub_file_buttons(void)
@@ -21,7 +27,7 @@ static void view_sub_file_buttons(void)
     button_t **list = Widgets[e_subwidget_file]->buttons;
 
     button_set_sub_context(list[0], "New...", VEC2(0, 0), &show_it);
-    button_set_sub_context(list[1], "Open...", VEC2(0, 40), &show_it);
+    button_set_sub_context(list[1], "Open...", VEC2(0, 40), &open_it);
     button_set_sub_context(list[2], "Save", VEC2(0, 80), &show_it);
     button_set_sub_context(list[3], "Save as", VEC2(0, 120), &show_it);
     list[0]->subText = my_strdup("ALT+CTRL+N");
@@ -41,6 +47,7 @@ void view_sub_file_init(void)
 {
     Widgets[e_subwidget_file]->size.x = UI_DROPDOWN_W;
     Widgets[e_subwidget_file]->size.y = 160;
+    Widgets[e_subwidget_file]->cornerRadius = 0.0f;
     Widgets[e_subwidget_file]->position.x = 4.0f;
     Widgets[e_subwidget_file]->position.y = UI_CONTEXT_H - 3.0f;
     Widgets[e_subwidget_file]->backgroundColor = sfWhite;

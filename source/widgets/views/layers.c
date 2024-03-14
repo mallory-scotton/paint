@@ -26,5 +26,6 @@ void view_layers_init(void)
     Widgets[e_widget_layers]->buttonCount = 0;
     Widgets[e_widget_layers]->visible = true;
     Widgets[e_widget_layers]->hasCustomDraw = true;
+    Widgets[e_widget_layers]->cornerRadius = 0.0f;
     Widgets[e_widget_layers]->customDraw = &layers_custom_draw;
 }

@@ -68,6 +68,7 @@ void view_sub_view_init(void)
     Widgets[e_subwidget_view]->size.y = 4 * 40.0f;
     Widgets[e_subwidget_view]->position.x = 269.0f;
     Widgets[e_subwidget_view]->position.y = UI_CONTEXT_H - 3.0f;
+    Widgets[e_subwidget_view]->cornerRadius = 0.0f;
     Widgets[e_subwidget_view]->backgroundColor = sfWhite;
     Widgets[e_subwidget_view]->hasShadow = true;
     Widgets[e_subwidget_view]->buttonCount = 4;

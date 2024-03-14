@@ -85,6 +85,7 @@ void view_toolbar_init(void)
     Widgets[e_widget_toolbar]->size.y = UI_TOOLBAR_H;
     Widgets[e_widget_toolbar]->position.x = 0;
     Widgets[e_widget_toolbar]->position.y = UI_TOOL_H + UI_CONTEXT_H;
+    Widgets[e_widget_toolbar]->cornerRadius = 0.0f;
     Widgets[e_widget_toolbar]->backgroundColor = COLOR_BASE;
     Widgets[e_widget_toolbar]->buttonCount = 12;
     Widgets[e_widget_toolbar]->buttons = malloc(sizeof(button_t *) *

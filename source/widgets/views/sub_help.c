@@ -46,6 +46,7 @@ void view_sub_help_init(void)
     Widgets[e_subwidget_help]->backgroundColor = sfWhite;
     Widgets[e_subwidget_help]->hasShadow = true;
     Widgets[e_subwidget_help]->buttonCount = 3;
+    Widgets[e_subwidget_help]->cornerRadius = 0.0f;
     Widgets[e_subwidget_help]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_subwidget_help]->buttonCount);
     for (uint i = 0; i < Widgets[e_subwidget_help]->buttonCount; i++) {
@@ -84,7 +85,8 @@ void view_sub_helpcredit(void)
     Widgets[e_subwidget_credit]->position.x = 400.0f;
     Widgets[e_subwidget_credit]->position.y = 300.0f;
     Widgets[e_subwidget_credit]->backgroundColor = COLOR_BASE;
-    Widgets[e_subwidget_credit]->hasShadow = true;
+    Widgets[e_subwidget_credit]->hasShadow = false;
+    Widgets[e_subwidget_credit]->cornerRadius = 10.0f;
     Widgets[e_subwidget_credit]->buttonCount = 1;
     Widgets[e_subwidget_credit]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_subwidget_credit]->buttonCount);
@@ -104,8 +106,9 @@ void view_sub_helptuto(void)
     Widgets[e_subwidget_tuto]->size.y = 400.0f;
     Widgets[e_subwidget_tuto]->position.x = 400.0f;
     Widgets[e_subwidget_tuto]->position.y = 300.0f;
+    Widgets[e_subwidget_tuto]->cornerRadius = 10.0f;
     Widgets[e_subwidget_tuto]->backgroundColor = COLOR_BASE;
-    Widgets[e_subwidget_tuto]->hasShadow = true;
+    Widgets[e_subwidget_tuto]->hasShadow = false;
     Widgets[e_subwidget_tuto]->buttonCount = 1;
     Widgets[e_subwidget_tuto]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_subwidget_tuto]->buttonCount);

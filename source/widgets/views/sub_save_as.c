@@ -33,6 +33,7 @@ void view_sub_save_as_init(void)
     Widgets[e_subwidget_save_as]->position.x = UI_DROPDOWN_W + 4.0f;
     Widgets[e_subwidget_save_as]->position.y = UI_CONTEXT_H - 3.0f + 120.0f;
     Widgets[e_subwidget_save_as]->backgroundColor = sfWhite;
+    Widgets[e_subwidget_save_as]->cornerRadius = 0.0f;
     Widgets[e_subwidget_save_as]->hasShadow = true;
     Widgets[e_subwidget_save_as]->buttonCount = 4;
     Widgets[e_subwidget_save_as]->buttons = malloc(sizeof(button_t *) *

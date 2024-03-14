@@ -86,6 +86,7 @@ typedef struct widget_s {
     void (*customDraw)(widget_t *wid);
     bool hasCustomDraw;
     bool cursorOver;
+    float cornerRadius;
     bool hasShadow;
 } widget_t;
 

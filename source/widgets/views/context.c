@@ -54,6 +54,7 @@ void view_context_init(void)
     Widgets[e_widget_context]->size.y = UI_CONTEXT_H;
     Widgets[e_widget_context]->position.x = 0;
     Widgets[e_widget_context]->position.y = 0;
+    Widgets[e_widget_context]->cornerRadius = 0.0f;
     Widgets[e_widget_context]->backgroundColor = COLOR_BASE;
     Widgets[e_widget_context]->buttonCount = 7;
     Widgets[e_widget_context]->buttons = malloc(sizeof(button_t *) *

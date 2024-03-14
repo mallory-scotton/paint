@@ -58,6 +58,7 @@ void view_sub_shortcut_init(void)
     Widgets[e_subwidget_shortcut]->backgroundColor = COLOR_BASE;
     Widgets[e_subwidget_shortcut]->hasShadow = true;
     Widgets[e_subwidget_shortcut]->buttonCount = 1;
+    Widgets[e_subwidget_shortcut]->cornerRadius = 0.0f;
     Widgets[e_subwidget_shortcut]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_subwidget_shortcut]->buttonCount);
     for (uint i = 0; i < Widgets[e_subwidget_shortcut]->buttonCount; i++) {

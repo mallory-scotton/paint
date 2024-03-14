@@ -40,6 +40,7 @@ void view_sub_edit_init(void)
     Widgets[e_subwidget_edit]->size.x = UI_DROPDOWN_W;
     Widgets[e_subwidget_edit]->size.y = 7 * 40.f;
     Widgets[e_subwidget_edit]->position.x = 59.0f;
+    Widgets[e_subwidget_edit]->cornerRadius = 0.0f;
     Widgets[e_subwidget_edit]->position.y = UI_CONTEXT_H - 3.0f;
     Widgets[e_subwidget_edit]->backgroundColor = sfWhite;
     Widgets[e_subwidget_edit]->hasShadow = true;
