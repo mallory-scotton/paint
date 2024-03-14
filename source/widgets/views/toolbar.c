@@ -23,9 +23,10 @@
 static void switch_tool(button_t *btn)
 {
     button_t **list = Widgets[e_widget_toolbar]->buttons;
-    int tools[11] = {e_tool_move, e_tool_rectangle_select, e_tool_lasso,
-        e_tool_eyedropper, e_tool_brush, e_tool_eraser, e_tool_bucket,
-        e_tool_text, e_tool_rectangle, e_tool_hand, e_tool_zoom};
+    int tools[12] = {e_tool_move, e_tool_rectangle_select, e_tool_lasso,
+        e_tool_eyedropper, e_tool_pencil, e_tool_brush, e_tool_eraser,
+        e_tool_bucket, e_tool_text, e_tool_rectangle, e_tool_hand,
+        e_tool_zoom};
 
     for (uint i = 0; i < Widgets[e_widget_toolbar]->buttonCount; i++)
         list[i]->state = e_state_active;
@@ -58,16 +59,17 @@ static void virtual_key(button_t *btn)
 static void view_toolbar_buttons(void)
 {
     button_t **list = Widgets[e_widget_toolbar]->buttons;
-    int btns[11] = {e_assets_tool_move, e_assets_tool_rectangle_select,
-        e_assets_tool_lasso, e_assets_tool_eyedropper, e_assets_tool_brush,
-        e_assets_tool_eraser, e_assets_tool_bucket, e_assets_tool_text,
-        e_assets_tool_rectangle, e_assets_tool_hand, e_assets_tool_zoom};
+    int btns[12] = {e_assets_tool_move, e_assets_tool_rectangle_select,
+        e_assets_tool_lasso, e_assets_tool_eyedropper, e_assets_tool_pencil,
+        e_assets_tool_brush, e_assets_tool_eraser, e_assets_tool_bucket,
+        e_assets_tool_text, e_assets_tool_rectangle, e_assets_tool_hand,
+        e_assets_tool_zoom};
 
-    for (uint i = 0; i < 11; i++)
+    for (uint i = 0; i < 12; i++)
         button_set_toolbar(list[i], Assets[btns[i]], VEC2(UI_PAD,
             UI_PAD + (UI_TOOL_H + UI_PAD / 2) * i), &switch_tool);
     list[4]->state = e_state_clicked;
-    button_set_toolbar(list[11], Assets[e_assets_virtual_key],
+    button_set_toolbar(list[12], Assets[e_assets_virtual_key],
         VEC2(UI_PAD, UI_PAD + (UI_TOOL_H + UI_PAD / 2) * 11), &virtual_key);
 }
 
@@ -87,7 +89,7 @@ void view_toolbar_init(void)
     Widgets[e_widget_toolbar]->position.y = UI_TOOL_H + UI_CONTEXT_H;
     Widgets[e_widget_toolbar]->cornerRadius = 0.0f;
     Widgets[e_widget_toolbar]->backgroundColor = COLOR_BASE;
-    Widgets[e_widget_toolbar]->buttonCount = 12;
+    Widgets[e_widget_toolbar]->buttonCount = 13;
     Widgets[e_widget_toolbar]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_widget_toolbar]->buttonCount);
     for (uint i = 0; i < Widgets[e_widget_toolbar]->buttonCount; i++) {
