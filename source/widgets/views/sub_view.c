@@ -56,6 +56,10 @@ static void view_sub_view_buttons(void)
     button_set_sub_context(list[1], "Zoom out", VEC2(0, 40), &zoom_out);
     button_set_sub_context(list[2], "Fit the area", VEC2(0, 80), &fit_area);
     button_set_sub_context(list[3], "Pixel to pixel", VEC2(0, 120), &pixel);
+    list[0]->subText = my_strdup("CTRL++");
+    list[1]->subText = my_strdup("CTRL+-");
+    list[2]->subText = my_strdup("CTRL+0");
+    list[3]->subText = my_strdup("CTRL+1");
 }
 
 void view_sub_view_init(void)

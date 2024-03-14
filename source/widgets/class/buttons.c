@@ -30,6 +30,7 @@ void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
     btn->backgroundColor = sfTransparent;
     btn->hoverBackgroundColor = COLOR_BG_BTN_HOVER;
     btn->text = NULL;
+    btn->subText = NULL;
     btn->textColor = sfWhite;
     btn->textSize = 0;
     btn->icon = icn;
@@ -67,6 +68,7 @@ void button_set_context(button_t *btn, string text, vec2f pos,
     btn->backgroundColor = sfTransparent;
     btn->hoverBackgroundColor = COLOR_BG_INPUT;
     btn->text = my_strdup(text);
+    btn->subText = NULL;
     btn->textColor = COLOR_TEXT;
     btn->textSize = 18;
     btn->icon = NULL;
@@ -88,7 +90,10 @@ void button_set_sub_context(button_t *btn, string text, vec2f pos,
     btn->backgroundColor = sfTransparent;
     btn->hoverBackgroundColor = RGB(178, 216, 239);
     btn->text = my_strdup(text);
+    btn->subText = NULL;
     btn->textColor = sfBlack;
+    btn->subTextSize = 16;
+    btn->subTextColor = RGBA(0, 0, 0, 125);
     btn->textSize = 16;
     btn->icon = NULL;
     btn->state = e_state_active;
@@ -109,6 +114,7 @@ void button_set_close(button_t *btn, string Text, vec2f pos,
     btn->backgroundColor = sfTransparent;
     btn->hoverBackgroundColor = COLOR_BG_INPUT;
     btn->text = my_strdup(Text);
+    btn->subText = NULL;
     btn->textColor = COLOR_TEXT;
     btn->textSize = 16;
     btn->icon = NULL;

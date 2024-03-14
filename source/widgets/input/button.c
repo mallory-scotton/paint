@@ -139,6 +139,33 @@ static float button_calculate_width(button_t *btn)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws the subtext of a button.
+///
+/// This function draws the subtext of a button at the specified position.
+///
+/// \param btn A pointer to the button.
+/// \param pos The position at which to draw the subtext.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
+static void button_draw_subtext(button_t *btn, vec2f pos)
+{
+    sfText *text = sfText_create();
+    rectf size;
+
+    sfText_setFont(text, OpenSans);
+    sfText_setString(text, btn->subText);
+    sfText_setColor(text, btn->subTextColor);
+    sfText_setCharacterSize(text, btn->subTextSize);
+    size = sfText_getLocalBounds(text);
+    sfText_setPosition(text, VEC2(pos.x + btn->size.x - btn->padding.x - 1.0f
+        - size.width, pos.y + btn->padding.y));
+    sfRenderWindow_drawText(Win->self, text, NULL);
+    sfText_destroy(text);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Draws a button on the window.
 ///
 /// This function creates a rectangle shape representing the button's
@@ -167,4 +194,5 @@ void button_draw(widget_t *wid, button_t *btn)
         button_draw_accent(btn, pos);
     DOIF(btn->icon != NULL, button_draw_icon(btn, pos));
     DOIF(btn->text != NULL, button_draw_text(btn, pos));
+    DOIF(btn->subText != NULL, button_draw_subtext(btn, pos));
 }

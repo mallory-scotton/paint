@@ -61,6 +61,9 @@ typedef struct button_s {
     sfColor iconColor;
     float cornerRadius;
     string text;
+    string subText;
+    sfColor subTextColor;
+    uint subTextSize;
     bool asAccent;
     uint textSize;
     sfTexture *icon;

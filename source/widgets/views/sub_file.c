@@ -24,6 +24,9 @@ static void view_sub_file_buttons(void)
     button_set_sub_context(list[1], "Open...", VEC2(0, 40), &show_it);
     button_set_sub_context(list[2], "Save", VEC2(0, 80), &show_it);
     button_set_sub_context(list[3], "Save as", VEC2(0, 120), &show_it);
+    list[0]->subText = my_strdup("ALT+CTRL+N");
+    list[1]->subText = my_strdup("CTRL+O");
+    list[2]->subText = my_strdup("CTRL+S");
 }
 
 static void custom_sub_file_draw(widget_t *wid)

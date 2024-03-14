@@ -27,6 +27,12 @@ static void view_sub_edit_buttons(void)
     button_set_sub_context(list[4], "Paste", VEC2(0, 160), &show_it);
     button_set_sub_context(list[5], "Clear", VEC2(0, 200), &show_it);
     button_set_sub_context(list[6], "Preferences...", VEC2(0, 240), &show_it);
+    list[0]->subText = my_strdup("CTRL+Z");
+    list[1]->subText = my_strdup("CTRL+Y");
+    list[2]->subText = my_strdup("CTRL+X");
+    list[3]->subText = my_strdup("CTRL+C");
+    list[5]->subText = my_strdup("CTRL+V");
+    list[6]->subText = my_strdup("Delete");
 }
 
 void view_sub_edit_init(void)
