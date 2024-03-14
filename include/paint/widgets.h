@@ -38,6 +38,7 @@ typedef enum widget_list_e {
     e_subwidget_credit,
     e_subwidget_tuto,
     e_subwidget_virtual_key,
+    e_subwidget_save_as,
     WIDGET_COUNT
 } widget_list_t;
 
@@ -66,6 +67,10 @@ typedef struct button_s {
     vec2f iconSize;
     vec2f padding;
     void (*onClick)(button_t *btn);
+    void (*onHover)(button_t *btn);
+    void (*onLeave)(button_t *btn);
+    bool asHoverEvt;
+    bool asLeaveEvt;
 } button_t;
 
 typedef struct widget_s {
@@ -277,6 +282,7 @@ void view_sub_helpcredit(void);
 void view_sub_helptuto(void);
 void view_sub_about_init(void);
 void view_sub_shortcut_init(void);
+void view_sub_save_as_init(void);
 
 void close_tuto(button_t *btn);
 void tutorial(widget_t *wig);

@@ -42,6 +42,8 @@ void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
     btn->textColor = sfTransparent;
     btn->iconColor = COLOR_TEXT;
     btn->cornerRadius = 5.0f;
+    btn->asHoverEvt = false;
+    btn->asLeaveEvt = false;
     btn->asAccent = true;
 }
 
@@ -75,6 +77,8 @@ void button_set_context(button_t *btn, string text, vec2f pos,
     btn->iconSize = VEC2(0, 0);
     btn->size = VEC2(-1.0f, 30.0f);
     btn->cornerRadius = 5.0f;
+    btn->asHoverEvt = false;
+    btn->asLeaveEvt = false;
     btn->asAccent = false;
 }
 
@@ -94,6 +98,8 @@ void button_set_sub_context(button_t *btn, string text, vec2f pos,
     btn->iconSize = VEC2(0, 0);
     btn->size = VEC2(200.0f, 40.0f);
     btn->cornerRadius = 0.0f;
+    btn->asHoverEvt = false;
+    btn->asLeaveEvt = false;
     btn->asAccent = false;
 }
 
@@ -113,5 +119,7 @@ void button_set_close(button_t *btn, string Text, vec2f pos,
     btn->iconSize = VEC2(0, 0);
     btn->size = VEC2(30.0f, 30.0f);
     btn->cornerRadius = 15.0f;
+    btn->asHoverEvt = false;
+    btn->asLeaveEvt = false;
     btn->asAccent = false;
 }

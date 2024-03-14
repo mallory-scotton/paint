@@ -73,15 +73,19 @@ static void button_parse_state(button_t *btn, vec2f pos, widget_t *wid)
     vec2i mousePos;
 
     if (!wid->cursorOver) {
-        if (btn->state == e_state_hovered)
+        if (btn->state == e_state_hovered) {
             btn->state = e_state_active;
+            DOIF(btn->asLeaveEvt, btn->onLeave(btn));
+        }
         return;
     }
     mousePos = sfMouse_getPositionRenderWindow(Win->self);
     if (mousePos.x >= pos.x && mousePos.x < pos.x + btn->size.x &&
         mousePos.y >= pos.y && mousePos.y < pos.y + btn->size.y) {
-        if (btn->state != e_state_clicked)
+        if (btn->state != e_state_clicked && btn->state != e_state_hovered) {
             btn->state = e_state_hovered;
+            DOIF(btn->asHoverEvt, btn->onHover(btn));
+        }
     } else {
         DOIF(btn->state == e_state_hovered, EQ2(btn->state, e_state_active));
     }

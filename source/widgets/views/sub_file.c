@@ -26,6 +26,13 @@ static void view_sub_file_buttons(void)
     button_set_sub_context(list[3], "Save as", VEC2(0, 120), &show_it);
 }
 
+static void custom_sub_file_draw(widget_t *wid)
+{
+    Widgets[e_subwidget_save_as]->visible =
+        wid->buttons[3]->state != e_state_active ||
+        Widgets[e_subwidget_save_as]->cursorOver;
+}
+
 void view_sub_file_init(void)
 {
     Widgets[e_subwidget_file]->size.x = UI_DROPDOWN_W;
@@ -43,4 +50,6 @@ void view_sub_file_init(void)
     }
     view_sub_file_buttons();
     Widgets[e_subwidget_file]->visible = false;
+    Widgets[e_subwidget_file]->hasCustomDraw = true;
+    Widgets[e_subwidget_file]->customDraw = &custom_sub_file_draw;
 }
