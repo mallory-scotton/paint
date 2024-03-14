@@ -26,5 +26,6 @@ buffer_t *my_buffinit(void)
 
     RETURN(buffer == NULL, NULL);
     buffer->size = 0;
+    buffer->content = malloc(sizeof(char));
     return (buffer);
 }

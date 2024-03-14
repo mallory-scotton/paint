@@ -27,7 +27,8 @@ void my_buffchar(buffer_t *buffer, char c)
     if (buffer->content == NULL)
         buffer->content = malloc(sizeof(char));
     else
-        buffer->content = my_realloc(buffer->content, (buffer->size + 1));
+        buffer->content = my_realloc(buffer->content, (buffer->size + 2));
     buffer->content[buffer->size] = c;
+    buffer->content[buffer->size + 1] = '\0';
     buffer->size++;
 }
