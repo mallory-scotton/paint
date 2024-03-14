@@ -23,8 +23,14 @@ static void widget_background_draw(widget_t *wid)
 {
     sfRectangleShape *back = sfRectangleShape_create();
 
-    sfRectangleShape_setFillColor(back, wid->backgroundColor);
     sfRectangleShape_setSize(back, wid->size);
+    if (wid->hasShadow) {
+        sfRectangleShape_setFillColor(back, RGBA(0, 0, 0, 50));
+        sfRectangleShape_setPosition(back, Vec2.add(wid->position,
+            VEC2(5, 5)));
+        sfRenderWindow_drawRectangleShape(Win->self, back, NULL);
+    }
+    sfRectangleShape_setFillColor(back, wid->backgroundColor);
     sfRectangleShape_setPosition(back, wid->position);
     sfRenderWindow_drawRectangleShape(Win->self, back, NULL);
     sfRectangleShape_destroy(back);
