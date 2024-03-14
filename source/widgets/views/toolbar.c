@@ -70,7 +70,7 @@ static void view_toolbar_buttons(void)
             UI_PAD + (UI_TOOL_H + UI_PAD / 2) * i), &switch_tool);
     list[4]->state = e_state_clicked;
     button_set_toolbar(list[12], Assets[e_assets_virtual_key],
-        VEC2(UI_PAD, UI_PAD + (UI_TOOL_H + UI_PAD / 2) * 11), &virtual_key);
+        VEC2(UI_PAD, UI_PAD + (UI_TOOL_H + UI_PAD / 2) * 12), &virtual_key);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
