@@ -24,6 +24,8 @@ static void view_sub_layer_buttons(void)
     button_set_sub_context(list[1], "Duplicate layer", VEC2(0, 40), &show_it);
     button_set_sub_context(list[2], "Delete", VEC2(0, 80), &show_it);
     button_set_sub_context(list[3], "Group layers", VEC2(0, 120), &show_it);
+    for (uint i = 0; i < 4; i++)
+        list[i]->state = e_state_disabled;
 }
 
 void view_sub_layer_init(void)

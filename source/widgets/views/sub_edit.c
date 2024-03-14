@@ -33,6 +33,8 @@ static void view_sub_edit_buttons(void)
     list[3]->subText = my_strdup("CTRL+C");
     list[5]->subText = my_strdup("CTRL+V");
     list[6]->subText = my_strdup("Delete");
+    for (uint i = 0; i < 7; i++)
+        list[i]->state = e_state_disabled;
 }
 
 void view_sub_edit_init(void)

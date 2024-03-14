@@ -25,6 +25,8 @@ static void view_sub_image_buttons(void)
     button_set_sub_context(list[2], "Transform", VEC2(0, 80), &show_it);
     button_set_sub_context(list[3], "Reveal all", VEC2(0, 120), &show_it);
     button_set_sub_context(list[4], "Duplicate", VEC2(0, 160), &show_it);
+    for (uint i = 0; i < 5; i++)
+        list[i]->state = e_state_disabled;
 }
 
 void view_sub_image_init(void)

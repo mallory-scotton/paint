@@ -72,6 +72,7 @@ static void button_parse_state(button_t *btn, vec2f pos, widget_t *wid)
 {
     vec2i mousePos;
 
+    RETURN(btn->state == e_state_disabled, (void)0);
     if (!wid->cursorOver) {
         if (btn->state == e_state_hovered) {
             btn->state = e_state_active;
@@ -106,6 +107,8 @@ static void button_draw_text(button_t *btn, vec2f pos)
     sfText_setPosition(text, VEC2(pad + pos.x + btn->padding.x - 1.0f,
         pos.y + btn->padding.y));
     sfText_setString(text, btn->text);
+    if (btn->state == e_state_disabled)
+        btn->textColor.a = 100;
     sfText_setColor(text, btn->textColor);
     sfText_setCharacterSize(text, btn->textSize);
     sfRenderWindow_drawText(Win->self, text, NULL);
@@ -188,8 +191,9 @@ void button_draw(widget_t *wid, button_t *btn)
         btn->onClick(btn);
         Tool->mousePressed = false;
     }
-    draw_rounded_rectangle(btn->size, pos, btn->state == e_state_active ?
-        btn->backgroundColor : btn->hoverBackgroundColor, btn->cornerRadius);
+    draw_rounded_rectangle(btn->size, pos, btn->state == e_state_active ||
+        btn->state == e_state_disabled ? btn->backgroundColor :
+        btn->hoverBackgroundColor, btn->cornerRadius);
     if (btn->state == e_state_clicked && btn->asAccent)
         button_draw_accent(btn, pos);
     DOIF(btn->icon != NULL, button_draw_icon(btn, pos));
