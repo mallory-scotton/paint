@@ -27,13 +27,13 @@ void fit_area(button_t *btn)
     btn = btn;
 }
 
-static void zoom_in(button_t *btn)
+void zoom_in(button_t *btn)
 {
     Tool->canva->scale = Vec2.add(Tool->canva->scale, VEC2(0.03f, 0.03f));
     btn = btn;
 }
 
-static void zoom_out(button_t *btn)
+void zoom_out(button_t *btn)
 {
     Tool->canva->scale = Vec2.subtract(Tool->canva->scale, VEC2(0.03f, 0.03f));
     btn = btn;

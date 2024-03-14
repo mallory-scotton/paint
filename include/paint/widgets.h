@@ -293,5 +293,7 @@ void button_set_close(button_t *btn, string Text, vec2f pos,
 void view_sub_tuto_buttons(void);
 
 void fit_area(button_t *btn);
+void zoom_out(button_t *btn);
+void zoom_in(button_t *btn);
 
 #endif /* !WIDGETS_H_ */

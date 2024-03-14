@@ -214,6 +214,18 @@ sfColor getpixel(int x, int y);
 void use_bucket_tool(void);
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Handles the use of the zoom tool.
+///
+/// This function is responsible for handling the use of the zoom tool. It
+/// checks whether the Alt key is pressed and invokes either the zoom-out or
+/// zoom-in function accordingly.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
+void use_zoom_tool(void);
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Draws the transformation rectangle on the canvas.
 ///
 /// This function creates, initializes, renders, and then destroys the

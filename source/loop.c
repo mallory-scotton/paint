@@ -21,6 +21,7 @@ static void use_tool(void)
     DOIF(Tool->type == e_tool_pencil, use_pencil_tool());
     DOIF(Tool->type == e_tool_eraser, use_eraser_tool());
     DOIF(Tool->type == e_tool_bucket, use_bucket_tool());
+    DOIF(Tool->type == e_tool_zoom, use_zoom_tool());
 }
 
 //! TEMP
