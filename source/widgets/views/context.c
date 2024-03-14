@@ -10,7 +10,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "paint.h"
 
-//!work here
 static void show_subwidget(button_t *btn)
 {
     widget_list_t sub[7] = {e_subwidget_file, e_subwidget_edit,
@@ -25,6 +24,13 @@ static void show_subwidget(button_t *btn)
     Widgets[sub[btn->index]]->visible = true;
 }
 
+static void on_hover(button_t *btn)
+{
+    for (uint i = 0; i < Widgets[e_widget_context]->buttonCount; i++)
+        if (Widgets[e_widget_context]->buttons[i]->state == e_state_clicked)
+            show_subwidget(btn);
+}
+
 static void view_context_buttons(void)
 {
     button_t **list = Widgets[e_widget_context]->buttons;
@@ -36,6 +42,10 @@ static void view_context_buttons(void)
     button_set_context(list[4], "View", VEC2(269, 6), &show_subwidget);
     button_set_context(list[5], "Window", VEC2(337, 6), &show_subwidget);
     button_set_context(list[6], "Help", VEC2(434, 6), &show_subwidget);
+    for (uint i = 0; i < Widgets[e_widget_context]->buttonCount; i++) {
+        Widgets[e_widget_context]->buttons[i]->asHoverEvt = true;
+        Widgets[e_widget_context]->buttons[i]->onHover = &on_hover;
+    }
 }
 
 void view_context_init(void)
