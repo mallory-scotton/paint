@@ -266,4 +266,6 @@ void open_image(string path);
 
 void draw_color_picker(vec2f pos);
 
+vec2f get_scale_factor(float delta, vec2f scale);
+
 #endif /* !CANVAS_H_ */
