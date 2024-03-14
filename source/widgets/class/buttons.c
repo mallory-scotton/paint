@@ -46,6 +46,7 @@ void button_set_toolbar(button_t *btn, sfTexture *icn, vec2f pos,
     btn->asHoverEvt = false;
     btn->asLeaveEvt = false;
     btn->asAccent = true;
+    btn->input = NULL;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -82,6 +83,7 @@ void button_set_context(button_t *btn, string text, vec2f pos,
     btn->asHoverEvt = false;
     btn->asLeaveEvt = false;
     btn->asAccent = false;
+    btn->input = NULL;
 }
 
 void button_set_sub_context(button_t *btn, string text, vec2f pos,
@@ -106,6 +108,7 @@ void button_set_sub_context(button_t *btn, string text, vec2f pos,
     btn->asHoverEvt = false;
     btn->asLeaveEvt = false;
     btn->asAccent = false;
+    btn->input = NULL;
 }
 
 void button_set_close(button_t *btn, string Text, vec2f pos,
@@ -128,4 +131,5 @@ void button_set_close(button_t *btn, string Text, vec2f pos,
     btn->asHoverEvt = false;
     btn->asLeaveEvt = false;
     btn->asAccent = false;
+    btn->input = NULL;
 }

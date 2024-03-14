@@ -129,8 +129,7 @@ typedef struct tool_s {
     bool wasMousePressed;
     sfColor primaryColor;
     vec2f colorPos;
-    buffer_t *input;
-    bool focused;
+    button_t *focus;
 } tool_t;
 
 /// Pointer to the active canvas list.

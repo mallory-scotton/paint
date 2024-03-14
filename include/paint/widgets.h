@@ -50,6 +50,19 @@ typedef enum state_e {
     STATE_COUNT
 } state_t;
 
+typedef enum input_type_e {
+    e_input_alpha,
+    e_input_alphanum,
+    e_input_num,
+    INPUT_TYPE_COUNT
+} input_type_t;
+
+typedef struct input_s {
+    input_type_t type;
+    buffer_t *content;
+    uint maxLength;
+} input_t;
+
 typedef struct button_s {
     int index;
     vec2f size;
@@ -74,6 +87,7 @@ typedef struct button_s {
     void (*onLeave)(button_t *btn);
     bool asHoverEvt;
     bool asLeaveEvt;
+    input_t *input;
 } button_t;
 
 typedef struct widget_s {
