@@ -188,6 +188,7 @@ void button_draw(widget_t *wid, button_t *btn)
         btn->size.x = button_calculate_width(btn);
     button_parse_state(btn, pos, wid);
     if (btn->state == e_state_hovered && Tool->mousePressed) {
+        Tool->focus = btn;
         btn->onClick(btn);
         Tool->mousePressed = false;
     }
@@ -197,6 +198,6 @@ void button_draw(widget_t *wid, button_t *btn)
     if (btn->state == e_state_clicked && btn->asAccent)
         button_draw_accent(btn, pos);
     DOIF(btn->icon != NULL, button_draw_icon(btn, pos));
-    DOIF(btn->text != NULL, button_draw_text(btn, pos));
+    DOIF(btn->text != NULL && btn->text[0], button_draw_text(btn, pos));
     DOIF(btn->subText != NULL, button_draw_subtext(btn, pos));
 }

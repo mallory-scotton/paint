@@ -21,9 +21,11 @@
 static void parse_mouse_events(sfEvent evt)
 {
     DOIF(evt.type == sfEvtClosed, sfRenderWindow_close(Win->self));
-    if (evt.type == sfEvtMouseButtonPressed)
+    if (evt.type == sfEvtMouseButtonPressed) {
         DOIF(evt.mouseButton.button == sfMouseLeft,
             EQ2(Tool->mousePressed, true));
+        Tool->focus = NULL;
+    }
     if (evt.type == sfEvtMouseButtonReleased)
         DOIF(evt.mouseButton.button == sfMouseLeft,
             EQ2(Tool->mousePressed, 0));
@@ -39,11 +41,23 @@ static void parse_mouse_events(sfEvent evt)
 ///////////////////////////////////////////////////////////////////////////////
 static void parse_keyboard_events(sfEvent evt)
 {
-    if (evt.type == sfEvtKeyPressed) {
-        if (evt.key.code == sfKeyAdd)
-            Tool->thickness++;
-        if (evt.key.code == sfKeySubtract)
-            Tool->thickness--;
+    input_t *i = Tool->focus ? Tool->focus->input : NULL;
+    sfKeyCode c = evt.key.code;
+    bool shift = PRESSED(sfKeyLShift) || PRESSED(sfKeyRShift);
+
+    RETURN(evt.type != sfEvtKeyPressed || i == NULL, (void)0);
+    if (c >= sfKeyNum0 && c <= sfKeyNum9)
+        my_buffchar(i->content, c - sfKeyNum0 + '0');
+    if (c >= sfKeyNumpad0 && c <= sfKeyNumpad9)
+        my_buffchar(i->content, c - sfKeyNumpad0 + '0');
+    if (c >= sfKeyA && c <= sfKeyZ && i->type == e_input_alphanum)
+        my_buffchar(i->content, shift ? c - sfKeyA + 'A' :
+            c - sfKeyA + 'a');
+    if ((c == sfKeyDelete || c == sfKeyBack) && i->content->size != 0) {
+        i->content->content = my_realloc(i->content->content,
+            i->content->size);
+        i->content->size--;
+        i->content->content[i->content->size] = '\0';
     }
 }
 
