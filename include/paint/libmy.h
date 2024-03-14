@@ -378,4 +378,70 @@ string my_strtok(string str, cstring delim);
 ///////////////////////////////////////////////////////////////////////////////
 string my_strdcat(cstring s1, cstring s2, cstring s3);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Append a character to the content of a buffer.
+///
+/// This function appends a character (c) to the content of the given buffer
+/// (buffer). If the buffer's content is initially NULL, it allocates memory
+/// for the content. Otherwise, it reallocates memory to accommodate the new
+/// character. The size of the buffer is updated accordingly.
+///
+/// \param buffer  The buffer to which the character will be appended.
+/// \param c       The character to append to the buffer.
+///
+///////////////////////////////////////////////////////////////////////////////
+void my_buffchar(buffer_t *buffer, char c);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Append a string to the content of a buffer.
+///
+/// This function appends a null-terminated string (str) to the content of the
+/// given buffer (buffer). It iterates through each character in the string
+/// and appends them to the buffer using the 'my_buffchar' function.
+///
+/// \param buffer  The buffer to which the string will be appended.
+/// \param str     The null-terminated string to append to the buffer.
+///
+///////////////////////////////////////////////////////////////////////////////
+void my_buffstr(buffer_t *buffer, string str);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Initialize a buffer with default values.
+///
+/// This function allocates memory for a new buffer and initializes its size to
+/// 0. It returns a pointer to the newly created buffer.
+///
+/// \return Pointer to the newly initialized buffer or NULL on allocation
+///         failure.
+///
+///////////////////////////////////////////////////////////////////////////////
+buffer_t *my_buffinit(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Deallocate memory for a buffer.
+///
+/// This function deallocates memory for the given buffer (buffer), including
+/// its content. It checks if the buffer is initially NULL before attempting
+/// to free its content and the buffer itself.
+///
+/// \param buffer  The buffer to deallocate.
+///
+///////////////////////////////////////////////////////////////////////////////
+void my_bufftroy(buffer_t *buffer);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Append an integer to the content of a buffer.
+///
+/// This function appends an integer (value) to the content of the given
+/// buffer (buffer). The parameter 'bytes_count' specifies the number of bytes
+/// to consider from the integer. It iteratively extracts each byte from the
+/// integer and appends it to the buffer using the 'my_buffchar' function.
+///
+/// \param buffer        The buffer to which the integer will be appended.
+/// \param value         The integer value to append to the buffer.
+/// \param bytes_count   The number of bytes to consider from the integer.
+///
+///////////////////////////////////////////////////////////////////////////////
+void my_buffint(buffer_t *buffer, int value, uint bytes_count);
+
 #endif /* !LIBMY_H_ */
