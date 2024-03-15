@@ -22,6 +22,7 @@ static void on_input(button_t *btn)
 {
     btn->text = btn->input->content->content;
     if (PRESSED(sfKeyEnter)) {
+        Widgets[e_subwidget_file]->visible = false;
         Widgets[e_subwidget_open]->visible = false;
         open_image(btn->input->content->content);
     }

@@ -24,8 +24,11 @@
 void open_image(string path)
 {
     sfImage *img = sfImage_createFromFile(path);
-    vec2u s = sfImage_getSize(img);
+    vec2u s;
 
+    if (img == NULL)
+        return;
+    s = sfImage_getSize(img);
     canvas_add(s.x, s.y, path, sfWhite);
     my_memcpy(Canvas->pixels, sfImage_getPixelsPtr(img), (s.x * s.y * 4));
     sfImage_destroy(img);
