@@ -319,6 +319,7 @@ void view_sub_about_init(void);
 void view_sub_shortcut_init(void);
 void view_sub_save_as_init(void);
 void view_sub_new_init(void);
+void view_sub_open_init(void);
 
 void close_tuto(button_t *btn);
 void tutorial(widget_t *wig);
