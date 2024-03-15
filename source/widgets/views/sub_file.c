@@ -30,8 +30,11 @@ static void open_it(button_t *btn)
 
 static void save_it(button_t *btn)
 {
-    save_image("saved.jpg");
     btn = btn;
+    Widgets[e_subwidget_save]->visible = true;
+    Widgets[e_subwidget_file]->visible = false;
+    for (uint i = 0; i < Widgets[e_widget_context]->buttonCount; i++)
+        Widgets[e_widget_context]->buttons[i]->state = e_state_active;
 }
 
 static void save_as(button_t *btn)

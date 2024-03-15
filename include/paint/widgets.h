@@ -41,6 +41,7 @@ typedef enum widget_list_e {
     e_subwidget_virtual_key,
     e_subwidget_save_as,
     e_subwidget_open,
+    e_subwidget_save,
     WIDGET_COUNT
 } widget_list_t;
 
