@@ -59,6 +59,7 @@ static void parse_keyboard_events(sfEvent evt)
         i->content->size--;
         i->content->content[i->content->size] = '\0';
     }
+    Tool->focus->onInput(Tool->focus);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
