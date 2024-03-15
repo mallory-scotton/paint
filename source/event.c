@@ -31,7 +31,6 @@ static void parse_mouse_events(sfEvent evt)
             EQ2(Tool->mousePressed, 0));
 }
 
-
 static void parse_keyboard_relay(sfKeyCode c, input_t *i, bool shift)
 {
     if (c == sfKeySlash)
@@ -39,6 +38,7 @@ static void parse_keyboard_relay(sfKeyCode c, input_t *i, bool shift)
     if (c == sfKeySemiColon)
         my_buffchar(i->content, shift ? '.' : ';');
 }
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Parses keyboard events and updates the state accordingly.
 ///

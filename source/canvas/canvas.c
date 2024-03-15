@@ -13,11 +13,25 @@
 /// Pointer to the active canvas list.
 canvas_t *Canvas;
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Increments the canvas index counter and assigns a new canvas.
+///
+/// This function increments the canvas index counter, updates the canvas
+/// count, assigns the index to the new canvas, sets the global Canvas pointer
+/// to the new canvas, and updates the Tool's canvas pointer.
+///
+/// \param new Pointer to the new canvas to be assigned.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
 static void add_to_counter(canvas_t *new)
 {
     Tool->canvaIndex++;
     Tool->canvaCount++;
     new->index = Tool->canvaIndex;
+    Canvas = new;
+    Tool->canva = Canvas;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -35,7 +49,6 @@ void canvas_add(uint width, uint height, string name, sfColor baseColor)
 {
     canvas_t *new = malloc(sizeof(canvas_t));
 
-    add_to_counter(new);
     new->height = height;
     new->width = width;
     new->name = name;
@@ -52,8 +65,7 @@ void canvas_add(uint width, uint height, string name, sfColor baseColor)
         new->pixels[i + 2] = baseColor.g;
         new->pixels[i + 3] = baseColor.a;
     }
-    Canvas = new;
-    Tool->canva = Canvas;
+    add_to_counter(new);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
