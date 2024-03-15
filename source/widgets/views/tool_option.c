@@ -40,7 +40,6 @@ static void on_input_opacity(button_t *btn)
     Tool->color.a = my_atoi(btn->input->content->content);
 }
 
-
 static void draw_text(vec2f pos, string text)
 {
     sfText *t = sfText_create();
