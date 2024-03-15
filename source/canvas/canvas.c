@@ -13,6 +13,13 @@
 /// Pointer to the active canvas list.
 canvas_t *Canvas;
 
+static void add_to_counter(canvas_t *new)
+{
+    Tool->canvaIndex++;
+    Tool->canvaCount++;
+    new->index = Tool->canvaIndex;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Adds a new canvas to the paint application.
 ///
@@ -28,6 +35,7 @@ void canvas_add(uint width, uint height, string name, sfColor baseColor)
 {
     canvas_t *new = malloc(sizeof(canvas_t));
 
+    add_to_counter(new);
     new->height = height;
     new->width = width;
     new->name = name;

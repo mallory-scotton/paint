@@ -82,6 +82,7 @@ typedef struct layer_s {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct canvas_s {
+    uint index;
     string name;
     string path;
     uint width;
@@ -131,6 +132,8 @@ typedef struct tool_s {
     vec2f colorPos;
     button_t *focus;
     sfTexture *toolTexture;
+    uint canvaIndex;
+    uint canvaCount;
 } tool_t;
 
 /// Pointer to the active canvas list.

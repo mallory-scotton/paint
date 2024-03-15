@@ -53,6 +53,23 @@ static void draw_text(vec2f pos, string text)
     sfText_destroy(t);
 }
 
+static void change_canvas(button_t *btn)
+{
+    canvas_t *current = Canvas;
+
+    if (btn->index == 2 && Tool->canvaIndex != 0)
+        Tool->canvaIndex--;
+    if (btn->index == 3 && Tool->canvaIndex != Tool->canvaCount - 1)
+        Tool->canvaIndex++;
+    while (current != NULL) {
+        if (current->index == Tool->canvaIndex) {
+            Tool->canva = current;
+            break;
+        }
+        current = current->next;
+    }
+}
+
 static void tool_option_init_button(button_t **list)
 {
     button_set_input(list[0], VEC2(162, 8), e_input_num, 6);
@@ -63,6 +80,10 @@ static void tool_option_init_button(button_t **list)
     list[1]->text = my_strdup("100");
     my_buffstr(list[1]->input->content, "100");
     list[1]->onInput = &on_input_opacity;
+    button_set_context(list[2], "< Previous Canva", VEC2(1315, 8),
+        &change_canvas);
+    button_set_context(list[3], "Next Canva >", VEC2(1485, 8),
+        &change_canvas);
 }
 
 static void draw_icon(vec2f pos, sfTexture *texture)
@@ -96,7 +117,7 @@ void view_tool_option_init(void)
     Widgets[e_widget_tool_option]->position.y = UI_CONTEXT_H;
     Widgets[e_widget_tool_option]->cornerRadius = 0.0f;
     Widgets[e_widget_tool_option]->backgroundColor = COLOR_BASE;
-    Widgets[e_widget_tool_option]->buttonCount = 2;
+    Widgets[e_widget_tool_option]->buttonCount = 4;
     Widgets[e_widget_tool_option]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_widget_tool_option]->buttonCount);
     for (uint i = 0; i < Widgets[e_widget_tool_option]->buttonCount; i++) {
