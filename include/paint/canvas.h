@@ -140,6 +140,35 @@ extern canvas_t *Canvas;
 extern tool_t *Tool;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Blends two colors with a specified transparency.
+///
+/// This function blends two colors with a specified transparency level and
+/// returns the resulting color.
+///
+/// \param c1 The first color to blend.
+/// \param c2 The second color to blend.
+/// \param transparency The transparency level of the blending (0.0 to 1.0).
+///
+/// \return The blended color.
+///
+///////////////////////////////////////////////////////////////////////////////
+sfColor blend(sfColor c1, sfColor c2, float transparency);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Blends two colors.
+///
+/// This function blends two colors based on their alpha values and returns
+/// the resulting color.
+///
+/// \param c1 The first color to blend.
+/// \param c2 The second color to blend.
+///
+/// \return The blended color.
+///
+///////////////////////////////////////////////////////////////////////////////
+sfColor blend_colors(sfColor c1, sfColor c2);
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Adds a new canvas to the paint application.
 ///
 /// \param width The width of the new canvas.

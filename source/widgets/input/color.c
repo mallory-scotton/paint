@@ -267,7 +267,8 @@ void draw_color_picker(vec2f pos)
     draw_color_picker_alpha(pos);
     draw_color_picker_range(VEC2(pos.x + UI_CLR_A_S, pos.y));
     draw_rounded_rectangle(VEC2(UI_CLR_A_S + UI_CLR_R_W, 25),
-        VEC2(pos.x, pos.y + UI_CLR_A_S + 10), Tool->color, 5.0f);
+        VEC2(pos.x, pos.y + UI_CLR_A_S + 10), RGBA(Tool->color.r,
+        Tool->color.g, Tool->color.b, 255), 5.0f);
     draw_color_samples(VEC2(pos.x, pos.y + UI_CLR_A_S + 45.0f));
     if (Tool->mousePressed && mouse_in(VEC2(pos.x + UI_CLR_A_S, pos.y),
         VEC2(UI_CLR_R_W, UI_CLR_A_S)) && !has_focus) {

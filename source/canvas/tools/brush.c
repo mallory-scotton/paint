@@ -60,7 +60,7 @@ static void draw_pts(int x, int y)
             trans = fmaxf(0.0f, fminf(1.0f, (1.0f - (dist / (float)(r)))));
             currentColor = getpixel(i, j);
             blendedColor = blend(Tool->color, currentColor, trans);
-            setpixel(i, j, blendedColor);
+            setpixel(i, j, blend_colors(blendedColor, currentColor));
         }
     }
 }

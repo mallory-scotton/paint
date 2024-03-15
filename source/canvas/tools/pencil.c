@@ -11,6 +11,30 @@
 #include "paint.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Blends two colors.
+///
+/// This function blends two colors based on their alpha values and returns
+/// the resulting color.
+///
+/// \param c1 The first color to blend.
+/// \param c2 The second color to blend.
+///
+/// \return The blended color.
+///
+///////////////////////////////////////////////////////////////////////////////
+sfColor blend_colors(sfColor c1, sfColor c2)
+{
+    uchar alpha = c1.a + c2.a * (1 - c1.a / 255.0f);
+    float f1 = c1.a / 255.0f;
+    float f2 = c2.a / 255.0f * (1 - c1.a / 255.0f);
+    uchar red = (uchar)((c1.r * f1 + c2.r * f2) / (alpha / 255.0f));
+    uchar green = (uchar)((c1.g * f1 + c2.g * f2) / (alpha / 255.0f));
+    uchar blue = (uchar)((c1.b * f1 + c2.b * f2) / (alpha / 255.0f));
+
+    return (sfColor_fromRGBA(red, green, blue, alpha));
+}
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Draws a circular pattern of points around a specified point.
 ///
 /// This function is a helper function used by the draw_pts function to draw
@@ -32,7 +56,7 @@ static void draw_pts_loop(int x, int y, int i, int j)
     RETURN(!(SQUARE(i - x) + SQUARE(j - y) <= SQUARE(r)), (void)0);
     RETURN(!(i >= 0 && i < (int)(c->width) &&
         j >= 0 && j < (int)(c->height)), (void)0);
-    setpixel(i, j, Tool->color);
+    setpixel(i, j, blend_colors(Tool->color, getpixel(i, j)));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
