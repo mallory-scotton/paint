@@ -60,6 +60,8 @@ static void init_input(button_t **list)
     button_set_context(list[15], "Create", Vec2.add(list[2]->pos,
         VEC2(-70, 40)), &create_new);
     list[15]->backgroundColor = COLOR_ACCENT;
+    for (uint i = 3; i < 14; i++)
+        Widgets[e_subwidget_new]->buttons[i]->state = e_state_disabled;
 }
 
 static void view_sub_new_buttons(void)
