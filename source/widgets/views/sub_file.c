@@ -10,8 +10,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "paint.h"
 
-static void show_it(button_t *btn)
+static void new_it(button_t *btn)
 {
+    Widgets[e_subwidget_new]->visible = true;
+    Widgets[e_subwidget_file]->visible = false;
+    for (uint i = 0; i < Widgets[e_widget_context]->buttonCount; i++)
+        Widgets[e_widget_context]->buttons[i]->state = e_state_active;
     btn = btn;
 }
 
@@ -20,16 +24,28 @@ static void open_it(button_t *btn)
     btn = btn;
     open_image("tests/images/takumi.jpg");
     Tool->mousePressed = false;
+    fit_area(NULL);
+}
+
+static void save_it(button_t * btn)
+{
+    save_image("tests/images/saved.jpg");
+    btn = btn;
+}
+
+static void save_as(button_t *btn)
+{
+    btn = btn;
 }
 
 static void view_sub_file_buttons(void)
 {
     button_t **list = Widgets[e_subwidget_file]->buttons;
 
-    button_set_sub_context(list[0], "New...", VEC2(0, 0), &show_it);
+    button_set_sub_context(list[0], "New...", VEC2(0, 0), &new_it);
     button_set_sub_context(list[1], "Open...", VEC2(0, 40), &open_it);
-    button_set_sub_context(list[2], "Save", VEC2(0, 80), &show_it);
-    button_set_sub_context(list[3], "Save as", VEC2(0, 120), &show_it);
+    button_set_sub_context(list[2], "Save", VEC2(0, 80), &save_it);
+    button_set_sub_context(list[3], "Save as", VEC2(0, 120), &save_as);
     list[0]->subText = my_strdup("ALT+CTRL+N");
     list[1]->subText = my_strdup("CTRL+O");
     list[2]->subText = my_strdup("CTRL+S");

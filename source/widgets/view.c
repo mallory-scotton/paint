@@ -33,6 +33,7 @@ void view_init(void)
     view_sub_help_init();
     view_sub_shortcut_init();
     view_sub_save_as_init();
+    view_sub_new_init();
     fit_area(NULL);
 }
 

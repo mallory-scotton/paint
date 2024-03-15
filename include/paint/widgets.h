@@ -33,6 +33,7 @@ typedef enum widget_list_e {
     e_subwidget_view,
     e_subwidget_window,
     e_subwidget_help,
+    e_subwidget_new,
     e_subwidget_about,
     e_subwidget_shortcut,
     e_subwidget_credit,
@@ -138,6 +139,17 @@ typedef enum assets_e {
     e_assets_trash,
     e_assets_lock,
     e_assets_layers,
+    e_assets_new_file1,
+    e_assets_new_file2,
+    e_assets_new_file3,
+    e_assets_new_file4,
+    e_assets_new_file5,
+    e_assets_new_file6,
+    e_assets_new_file7,
+    e_assets_new_file8,
+    e_assets_new_file9,
+    e_assets_new_file10,
+    e_assets_new_file11,
     ASSETS_COUNT
 } assets_t;
 
@@ -301,6 +313,7 @@ void view_sub_helptuto(void);
 void view_sub_about_init(void);
 void view_sub_shortcut_init(void);
 void view_sub_save_as_init(void);
+void view_sub_new_init(void);
 
 void close_tuto(button_t *btn);
 void tutorial(widget_t *wig);
@@ -313,6 +326,8 @@ void shortcut_open(button_t *btn);
 void button_set_sub_context(button_t *btn, string text, vec2f pos,
     void (*onClick)(button_t *btn));
 void button_set_close(button_t *btn, string Text, vec2f pos,
+    void (*onClick)(button_t *btn));
+void button_set_new(button_t *btn, sfTexture *icn, vec2f pos,
     void (*onClick)(button_t *btn));
 void view_sub_tuto_buttons(void);
 

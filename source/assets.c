@@ -45,7 +45,18 @@ const string textures_path[ASSETS_COUNT] = {
     ASSETS_PATH "folder.png",
     ASSETS_PATH "trash.png",
     ASSETS_PATH "lock.png",
-    ASSETS_PATH "layers.png"
+    ASSETS_PATH "layers.png",
+    ASSETS_PATH "1640x664.png",
+    ASSETS_PATH "1920x1080.png",
+    ASSETS_PATH "1640x856.png",
+    ASSETS_PATH "1080x1080.png",
+    ASSETS_PATH "1080x1920.png",
+    ASSETS_PATH "1080x1350.png",
+    ASSETS_PATH "1280x720.png",
+    ASSETS_PATH "800x800.png",
+    ASSETS_PATH "2560x1440.png",
+    ASSETS_PATH "400x400.png",
+    ASSETS_PATH "1500x500.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////
