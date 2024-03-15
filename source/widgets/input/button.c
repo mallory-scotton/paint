@@ -29,6 +29,8 @@ static void button_draw_icon(button_t *btn, vec2f pos)
 
     sfSprite_setTexture(icon, btn->icon, false);
     sfSprite_setColor(icon, btn->iconColor);
+    if (btn->state == e_state_disabled)
+        sfSprite_setColor(icon, RGBA(0, 0, 0, 75));
     sfSprite_setScale(icon, VEC2(scalingFactorX, scalingFactorY));
     sfSprite_setPosition(icon, Vec2.add(pos, btn->padding));
     sfRenderWindow_drawSprite(Win->self, icon, NULL);
@@ -168,6 +170,20 @@ static void button_draw_subtext(button_t *btn, vec2f pos)
     sfText_destroy(text);
 }
 
+static void button_draw_caret(button_t *btn, vec2f pos)
+{
+    sfRectangleShape *caret = sfRectangleShape_create();
+    float pad = (btn->iconSize.x + btn->padding.x * 2) * btn->iconSize.x;
+    float text = my_strlen(btn->text) * (btn->textSize / 1.8);
+
+    sfRectangleShape_setFillColor(caret, sfWhite);
+    sfRectangleShape_setSize(caret, VEC2(2, btn->textSize));
+    sfRectangleShape_setPosition(caret, VEC2(pad + pos.x + btn->padding.x +
+        text, pos.y + btn->padding.y + 1.0f));
+    sfRenderWindow_drawRectangleShape(Win->self, caret, NULL);
+    sfRectangleShape_destroy(caret);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Draws a button on the window.
 ///
@@ -200,4 +216,6 @@ void button_draw(widget_t *wid, button_t *btn)
     DOIF(btn->icon != NULL, button_draw_icon(btn, pos));
     DOIF(btn->text != NULL && btn->text[0], button_draw_text(btn, pos));
     DOIF(btn->subText != NULL, button_draw_subtext(btn, pos));
+    if (btn->input != NULL && btn == Tool->focus)
+        button_draw_caret(btn, pos);
 }

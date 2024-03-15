@@ -297,6 +297,9 @@ bool cursor_over_view(widget_t *wid);
 ///////////////////////////////////////////////////////////////////////////////
 void check_view_collisions(void);
 
+void button_set_input(button_t *btn, vec2f pos, input_type_t type,
+    uint maxLen);
+
 void view_context_init(void);
 void view_layers_init(void);
 void view_tool_option_init(void);

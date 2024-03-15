@@ -32,4 +32,5 @@ void tool_init(void)
     Tool->primaryColor = sfRed;
     Tool->colorPos = VEC2(0, UI_CLR_A_S);
     Tool->focus = NULL;
+    Tool->toolTexture = Assets[e_assets_tool_pencil];
 }

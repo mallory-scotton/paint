@@ -41,8 +41,8 @@ int main(int argc, warray argv)
     window_init();
     time_init();
     widgets_init();
-    tool_init();
     assets_init();
+    tool_init();
     OpenSans = sfFont_createFromFile("assets/opensans.ttf");
     loop();
     sfFont_destroy(OpenSans);

@@ -130,6 +130,7 @@ typedef struct tool_s {
     sfColor primaryColor;
     vec2f colorPos;
     button_t *focus;
+    sfTexture *toolTexture;
 } tool_t;
 
 /// Pointer to the active canvas list.

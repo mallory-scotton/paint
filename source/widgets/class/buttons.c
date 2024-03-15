@@ -133,3 +133,32 @@ void button_set_close(button_t *btn, string Text, vec2f pos,
     btn->asAccent = false;
     btn->input = NULL;
 }
+
+static void dummy(button_t *btn)
+{
+    return ((void)btn);
+}
+
+void button_set_input(button_t *btn, vec2f pos, input_type_t type, uint maxLen)
+{
+    btn->backgroundColor = COLOR_BG_INPUT;
+    btn->hoverBackgroundColor = COLOR_BG_BTN_HOVER;
+    btn->subText = NULL;
+    btn->onClick = &dummy;
+    btn->pos = pos;
+    btn->size = VEC2(100, 32);
+    btn->padding = VEC2(5.0f, 4.0f);
+    btn->cornerRadius = 5.0f;
+    btn->state = e_state_active;
+    btn->icon = NULL;
+    btn->iconSize = VEC2(0, 0);
+    btn->asAccent = false;
+    btn->asHoverEvt = false;
+    btn->asLeaveEvt = false;
+    btn->textSize = 18;
+    btn->textColor = COLOR_TEXT;
+    btn->input = malloc(sizeof(input_t));
+    btn->input->content = my_buffinit();
+    btn->input->maxLength = maxLen;
+    btn->input->type = type;
+}

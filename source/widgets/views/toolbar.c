@@ -29,9 +29,11 @@ static void switch_tool(button_t *btn)
         e_tool_zoom};
 
     for (uint i = 0; i < Widgets[e_widget_toolbar]->buttonCount; i++)
-        list[i]->state = e_state_active;
+        if (list[i]->state != e_state_disabled)
+            list[i]->state = e_state_active;
     btn->state = e_state_clicked;
     Tool->type = tools[btn->index];
+    Tool->toolTexture = btn->icon;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -71,6 +73,13 @@ static void view_toolbar_buttons(void)
     list[4]->state = e_state_clicked;
     button_set_toolbar(list[12], Assets[e_assets_virtual_key],
         VEC2(UI_PAD, UI_PAD + (UI_TOOL_H + UI_PAD / 2) * 12), &virtual_key);
+    list[0]->state = e_state_disabled;
+    list[1]->state = e_state_disabled;
+    list[2]->state = e_state_disabled;
+    list[3]->state = e_state_disabled;
+    list[8]->state = e_state_disabled;
+    list[9]->state = e_state_disabled;
+    list[10]->state = e_state_disabled;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
