@@ -89,6 +89,7 @@ typedef struct button_s {
     bool asHoverEvt;
     bool asLeaveEvt;
     input_t *input;
+    void (*onInput)(button_t *btn);
 } button_t;
 
 typedef struct widget_s {
