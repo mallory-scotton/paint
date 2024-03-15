@@ -20,19 +20,17 @@ static void dummy(button_t *btn)
 
 static void on_input(button_t *btn)
 {
-    string path = my_strdcat(btn->input->content->content, ".jpg", "");
-
     btn->text = btn->input->content->content;
     if (PRESSED(sfKeyEnter)) {
         Widgets[e_subwidget_open]->visible = false;
-        open_image(path);
+        open_image(btn->input->content->content);
     }
     fit_area(NULL);
 }
 
 static void view_sub_open_buttons(button_t **list)
 {
-    button_set_sub_context(list[0], "path file", VEC2(4, 4), &dummy);
+    button_set_sub_context(list[0], "path file", VEC2(2, 20), &dummy);
     list[0]->input = malloc(sizeof(input_t));
     list[0]->input->type = e_input_alphanum;
     list[0]->input->content = my_buffinit();

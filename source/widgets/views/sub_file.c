@@ -23,8 +23,9 @@ static void open_it(button_t *btn)
 {
     btn = btn;
     Widgets[e_subwidget_open]->visible = true;
-    Tool->mousePressed = false;
-    fit_area(NULL);
+    Widgets[e_subwidget_file]->visible = false;
+    for (uint i = 0; i < Widgets[e_widget_context]->buttonCount; i++)
+        Widgets[e_widget_context]->buttons[i]->state = e_state_active;
 }
 
 static void save_it(button_t *btn)
