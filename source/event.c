@@ -50,9 +50,10 @@ static void parse_keyboard_events(sfEvent evt)
         my_buffchar(i->content, c - sfKeyNum0 + '0');
     if (c >= sfKeyNumpad0 && c <= sfKeyNumpad9)
         my_buffchar(i->content, c - sfKeyNumpad0 + '0');
-    if (c >= sfKeyA && c <= sfKeyZ && i->type == e_input_alphanum)
-        my_buffchar(i->content, shift ? c - sfKeyA + 'A' :
-            c - sfKeyA + 'a');
+    if (c == sfKeySlash)
+        my_buffchar(i->content, shift ? '/' : ':');
+    if ((c >= sfKeyA && c <= sfKeyZ) && i->type == e_input_alphanum)
+        my_buffchar(i->content, shift ? c - sfKeyA + 'A' : c - sfKeyA + 'a');
     if ((c == sfKeyDelete || c == sfKeyBack) && i->content->size != 0) {
         i->content->content = my_realloc(i->content->content,
             i->content->size);

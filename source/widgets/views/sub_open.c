@@ -20,9 +20,13 @@ static void dummy(button_t *btn)
 
 static void on_input(button_t *btn)
 {
+    string path = my_strdcat(btn->input->content->content, ".jpg", "");
+
     btn->text = btn->input->content->content;
-    if (PRESSED(sfKeyEnter))
-        open_image(btn->input->content->content);
+    if (PRESSED(sfKeyEnter)) {
+        Widgets[e_subwidget_open]->visible = false;
+        open_image(path);
+    }
     fit_area(NULL);
 }
 

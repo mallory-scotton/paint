@@ -29,7 +29,7 @@ static void open_it(button_t *btn)
 
 static void save_it(button_t *btn)
 {
-    save_image("tests/images/saved.jpg");
+    save_image("saved.jpg");
     btn = btn;
 }
 
