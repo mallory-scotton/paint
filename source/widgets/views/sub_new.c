@@ -73,6 +73,7 @@ void button_set_new(button_t *btn, sfTexture *icn, vec2f pos,
     btn->icon = icn;
     btn->iconSize = VEC2(100.0f, 100.0f);
     btn->pos = pos;
+    btn->cornerRadius = 0.0f;
     btn->size = VEC2(100.0f, 100.0f);
     btn->padding = VEC2(0.0f, 0.0f);
     btn->onClick = onClick;
