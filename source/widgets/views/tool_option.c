@@ -40,19 +40,6 @@ static void on_input_opacity(button_t *btn)
     Tool->color.a = my_atoi(btn->input->content->content);
 }
 
-static void draw_text(vec2f pos, string text)
-{
-    sfText *t = sfText_create();
-
-    sfText_setFont(t, OpenSans);
-    sfText_setString(t, text);
-    sfText_setPosition(t, pos);
-    sfText_setCharacterSize(t, 18);
-    sfText_setFillColor(t, COLOR_TEXT);
-    sfRenderWindow_drawText(Win->self, t, NULL);
-    sfText_destroy(t);
-}
-
 static void change_canvas(button_t *btn)
 {
     canvas_t *current = Canvas;

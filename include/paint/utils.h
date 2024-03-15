@@ -63,4 +63,18 @@ void draw_rounded_rectangle(vec2f size, vec2f pos, sfColor fillColor,
 ///////////////////////////////////////////////////////////////////////////////
 bool mouse_in(vec2f pos, vec2f size);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draws text at the specified position.
+///
+/// This function creates a text object with the specified string and font,
+/// sets its position, character size, color, and draws it on the window.
+///
+/// \param pos The position at which to draw the text.
+/// \param text The text string to draw.
+///
+/// \return None.
+///
+///////////////////////////////////////////////////////////////////////////////
+void draw_text(vec2f pos, string text);
+
 #endif /* !UTILS_H_ */
