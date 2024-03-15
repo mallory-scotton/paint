@@ -24,6 +24,15 @@ static void on_input(button_t *btn)
     fit_area(NULL);
 }
 
+static void save_file_evt(button_t *btn)
+{
+    Widgets[e_subwidget_file]->visible = false;
+    Widgets[e_subwidget_save]->visible = false;
+    open_image(Widgets[e_subwidget_save]->buttons[0]->input->content->content);
+    fit_area(NULL);
+    return ((void)btn);
+}
+
 static void view_sub_save_buttons(button_t **list)
 {
     button_set_input(list[0], VEC2(4, 35), e_input_alphanum, 1024);
@@ -32,6 +41,8 @@ static void view_sub_save_buttons(button_t **list)
     list[0]->text = list[0]->input->content->content;
     list[0]->onInput = &on_input;
     button_set_close(list[1], "X", VEC2(270, 0), &close_save);
+    button_set_context(list[2], "Save", VEC2(222, 82), &save_file_evt);
+    list[2]->backgroundColor = COLOR_ACCENT;
 }
 
 static void custom_draw(widget_t *wid)
@@ -42,13 +53,13 @@ static void custom_draw(widget_t *wid)
 void view_sub_save_init(void)
 {
     Widgets[e_subwidget_save]->size.x = UI_DROPDOWN_W + 100.0f;
-    Widgets[e_subwidget_save]->size.y = 2 * 40.0f;
+    Widgets[e_subwidget_save]->size.y = 3 * 40.0f;
     Widgets[e_subwidget_save]->cornerRadius = 0.0f;
     Widgets[e_subwidget_save]->position.x = 300.0f;
     Widgets[e_subwidget_save]->position.y = 300.0f;
     Widgets[e_subwidget_save]->backgroundColor = COLOR_BG_BTN_HOVER;
     Widgets[e_subwidget_save]->hasShadow = true;
-    Widgets[e_subwidget_save]->buttonCount = 2;
+    Widgets[e_subwidget_save]->buttonCount = 3;
     Widgets[e_subwidget_save]->buttons = malloc(sizeof(button_t *) *
         Widgets[e_subwidget_save]->buttonCount);
     for (uint i = 0; i < Widgets[e_subwidget_save]->buttonCount; i++) {
