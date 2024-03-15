@@ -22,12 +22,12 @@ static void new_it(button_t *btn)
 static void open_it(button_t *btn)
 {
     btn = btn;
-    open_image("tests/images/takumi.jpg");
+    Widgets[e_subwidget_open]->visible = true;
     Tool->mousePressed = false;
     fit_area(NULL);
 }
 
-static void save_it(button_t * btn)
+static void save_it(button_t *btn)
 {
     save_image("tests/images/saved.jpg");
     btn = btn;

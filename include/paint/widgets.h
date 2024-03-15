@@ -40,6 +40,7 @@ typedef enum widget_list_e {
     e_subwidget_tuto,
     e_subwidget_virtual_key,
     e_subwidget_save_as,
+    e_subwidget_open,
     WIDGET_COUNT
 } widget_list_t;
 
@@ -140,17 +141,17 @@ typedef enum assets_e {
     e_assets_trash,
     e_assets_lock,
     e_assets_layers,
-    e_assets_new_file1,
-    e_assets_new_file2,
-    e_assets_new_file3,
-    e_assets_new_file4,
-    e_assets_new_file5,
-    e_assets_new_file6,
-    e_assets_new_file7,
-    e_assets_new_file8,
-    e_assets_new_file9,
-    e_assets_new_file10,
-    e_assets_new_file11,
+    e_assets_file1,
+    e_assets_file2,
+    e_assets_file3,
+    e_assets_file4,
+    e_assets_file5,
+    e_assets_file6,
+    e_assets_file7,
+    e_assets_file8,
+    e_assets_file9,
+    e_assets_file10,
+    e_assets_file11,
     ASSETS_COUNT
 } assets_t;
 

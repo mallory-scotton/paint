@@ -7,7 +7,7 @@
 
 #include "paint.h"
 
-static void show_it(button_t * btn)
+static void show_it(button_t *btn)
 {
     btn = btn;
 }
@@ -26,17 +26,18 @@ static void view_sub_new_buttons(void)
     button_set_sub_context(list[1], "Width", VEC2(0, 40), &show_it);
     button_set_sub_context(list[2], "Height", VEC2(0, 80), &show_it);
     button_set_sub_context(list[3], "Background", VEC2(0, 120), &show_it);
-    button_set_new(list[4], Assets[e_assets_new_file1], VEC2(0, 160), &show_it);
-    button_set_new(list[5], Assets[e_assets_new_file2], VEC2(100, 160), &show_it);
-    button_set_new(list[6], Assets[e_assets_new_file3], VEC2(200, 160), &show_it);
-    button_set_new(list[7], Assets[e_assets_new_file4], VEC2(0, 260), &show_it);
-    button_set_new(list[8], Assets[e_assets_new_file5], VEC2(100, 260), &show_it);
-    button_set_new(list[9], Assets[e_assets_new_file6], VEC2(200, 260), &show_it);
-    button_set_new(list[10], Assets[e_assets_new_file7], VEC2(0, 360), &show_it);
-    button_set_new(list[11], Assets[e_assets_new_file8], VEC2(100, 360), &show_it);
-    button_set_new(list[12], Assets[e_assets_new_file9], VEC2(200, 360), &show_it);
-    button_set_new(list[13], Assets[e_assets_new_file10], VEC2(0, 460), &show_it);
-    button_set_new(list[14], Assets[e_assets_new_file11], VEC2(100, 460), &show_it);
+    button_set_new(list[4], Assets[e_assets_file1], VEC2(0, 160), &show_it);
+    button_set_new(list[5], Assets[e_assets_file2], VEC2(100, 160), &show_it);
+    button_set_new(list[6], Assets[e_assets_file3], VEC2(200, 160), &show_it);
+    button_set_new(list[7], Assets[e_assets_file4], VEC2(0, 260), &show_it);
+    button_set_new(list[8], Assets[e_assets_file5], VEC2(100, 260), &show_it);
+    button_set_new(list[9], Assets[e_assets_file6], VEC2(200, 260), &show_it);
+    button_set_new(list[10], Assets[e_assets_file7], VEC2(0, 360), &show_it);
+    button_set_new(list[11], Assets[e_assets_file8], VEC2(100, 360), &show_it);
+    button_set_new(list[12], Assets[e_assets_file9], VEC2(200, 360), &show_it);
+    button_set_new(list[13], Assets[e_assets_file10], VEC2(0, 460), &show_it);
+    button_set_new(list[14], Assets[e_assets_file11],
+        VEC2(100, 460), &show_it);
     button_set_close(list[15], "X", VEC2(270, 0), &close_new);
 }
 
