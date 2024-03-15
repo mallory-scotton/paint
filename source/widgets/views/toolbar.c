@@ -76,7 +76,6 @@ static void view_toolbar_buttons(void)
     list[0]->state = e_state_disabled;
     list[1]->state = e_state_disabled;
     list[2]->state = e_state_disabled;
-    list[3]->state = e_state_disabled;
     list[8]->state = e_state_disabled;
     list[9]->state = e_state_disabled;
     list[10]->state = e_state_disabled;

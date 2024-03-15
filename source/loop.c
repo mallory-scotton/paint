@@ -23,6 +23,7 @@ static void use_tool(void)
     DOIF(Tool->type == e_tool_bucket, use_bucket_tool());
     DOIF(Tool->type == e_tool_zoom, use_zoom_tool());
     DOIF(Tool->type == e_tool_brush, use_brush_tool());
+    DOIF(Tool->type == e_tool_eyedropper, use_picker_tool());
 }
 
 //! TEMP
