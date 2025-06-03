@@ -1,46 +1,45 @@
-# 🎨 MyPaint - Advanced Digital Painting Application
+# 🎨 MyPaint - Digital Painting Application
 
-A professional-grade digital painting application built with C and CSFML, featuring a comprehensive toolkit for digital artists and designers. MyPaint provides an intuitive interface with powerful drawing tools, layer management, and extensive canvas manipulation capabilities.
+A digital painting application built with C and CSFML as part of the B-MUL-200 multimedia programming course at Epitech. This project demonstrates fundamental graphics programming concepts, user interface design, and drawing tool implementation.
 
 ## 📋 Project Overview
 
-MyPaint is a feature-rich digital painting application designed for artists, designers, and creative professionals. Built using C programming language and the CSFML (Simple and Fast Multimedia Library), it offers a modern, user-friendly interface with professional-grade tools for digital art creation.
+MyPaint is a student project that recreates the basic functionality of a digital painting application. Built using C programming language and the CSFML (Simple and Fast Multimedia Library), it showcases skills in graphics programming, event handling, and software architecture.
 
-The application follows a modular architecture with separate components for canvas management, tool handling, widget rendering, and event processing, ensuring maintainable and extensible code.
+This first-year project implements core features like drawing tools, canvas management, and a graphical user interface, serving as an introduction to multimedia programming and game development concepts.
 
 ## ✨ Features
 
 ### 🖌️ Drawing Tools
-- **Pencil Tool**: Precise line drawing with customizable thickness
-- **Brush Tool**: Smooth brush strokes with pressure-sensitive opacity
-- **Eraser Tool**: Clean erasure with adjustable size
-- **Bucket Fill**: Flood fill tool for quick area coloring
-- **Color Picker**: Sample colors directly from the canvas
+- **Pencil Tool**: Basic line drawing with adjustable thickness
+- **Brush Tool**: Brush strokes with opacity control
+- **Eraser Tool**: Erase pixels with adjustable size
+- **Bucket Fill**: Fill enclosed areas with color
+- **Color Picker**: Sample colors from the canvas
 
 ### 🎨 Canvas Management
-- **Multi-canvas Support**: Work with multiple canvases simultaneously
-- **Zoom & Pan**: Smooth zooming (1/128x to 64x) and canvas navigation
-- **Canvas Transformation**: Scale, rotate, and position canvases
-- **Transparent Background**: Professional transparency grid display
-- **Custom Canvas Sizes**: Support for various preset and custom dimensions
+- **Canvas Support**: Work with drawing canvases
+- **Zoom & Pan**: Basic zooming and canvas navigation
+- **Canvas Positioning**: Move and scale the canvas
+- **Transparent Background**: Transparency grid display
+- **Canvas Creation**: Create new canvases with different sizes
 
 ### 🎛️ User Interface
-- **Modern Dark Theme**: Professional dark interface design
-- **Customizable Toolbar**: Comprehensive tool selection panel
-- **Color Picker Widget**: Advanced color selection with RGB/HSV support
-- **Layers Panel**: Professional layer management interface
-- **Property Panels**: Tool-specific options and settings
+- **Dark Theme**: Simple dark interface
+- **Toolbar**: Tool selection panel
+- **Color Picker Widget**: RGB color selection
+- **Layer Panel**: Basic layer management
+- **Tool Options**: Thickness and opacity controls
 
 ### 💾 File Operations
-- **Multiple Formats**: Support for PNG, JPG, BMP, TGA image formats
-- **Import/Export**: Open existing images and save your artwork
-- **Save As Options**: Choose from multiple export formats
+- **Image Formats**: Support for PNG, JPG, BMP, TGA formats
+- **Load Images**: Open existing images for editing
+- **Save Options**: Export artwork in various formats
 
-### ⌨️ Keyboard Shortcuts
+### ⌨️ Controls
 - `Alt + Scroll`: Zoom in/out
-- `Ctrl + Scroll`: Horizontal canvas movement
+- `Ctrl + Scroll`: Move canvas horizontally
 - `+/-`: Adjust tool thickness
-- Various menu shortcuts for quick access
 
 ## 🖼️ Gallery
 
@@ -119,40 +118,40 @@ sudo pacman -S gcc make csfml sfml
    - Use File > Save As to export in various formats
    - Choose from PNG, JPG, BMP, or TGA formats
 
-### Advanced Features
+### Key Features
 
 - **Canvas Navigation**: Use Alt+Scroll for zooming, Ctrl+Scroll for panning
-- **Tool Customization**: Adjust brush thickness and opacity in real-time
-- **Color Management**: Use the advanced color picker with RGB/HSV controls
-- **Layer Support**: Manage multiple layers for complex compositions
+- **Tool Settings**: Adjust brush thickness and opacity
+- **Color Selection**: Use the color picker to choose drawing colors
+- **Basic Layer Support**: Simple layer management functionality
 
 ## 🔧 Build Instructions
 
-### Development Build
+### Standard Build
 
-For development with debugging symbols:
+To compile the project:
 ```bash
 make
 ```
 
-### Clean Build
+### Clean and Rebuild
 
-To clean and rebuild:
+To clean object files and rebuild:
 ```bash
 make clean
 make
 ```
 
-### Testing
+### Running Tests
 
-Run the test suite:
+To run the test suite:
 ```bash
 make tests_run
 ```
 
-### Code Style
+### Code Style Check
 
-Check coding style compliance:
+To check coding style (Epitech norm):
 ```bash
 make style
 ```
@@ -203,26 +202,21 @@ copies or substantial portions of the Software.
 
 ## 🤝 Contributing
 
-We welcome contributions to MyPaint! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting pull requests.
+This is a student project, but contributions and improvements are welcome! 
 
 ### How to Contribute
 
 1. **Fork the repository**
-2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Commit your changes** (`git commit -m 'Add amazing feature'`)
-4. **Push to the branch** (`git push origin feature/amazing-feature`)
+2. **Create a feature branch** (`git checkout -b feature/new-feature`)
+3. **Commit your changes** (`git commit -m 'Add new feature'`)
+4. **Push to the branch** (`git push origin feature/new-feature`)
 5. **Open a Pull Request**
 
 ### Development Guidelines
 
-- Follow the existing code style and conventions
-- Add appropriate documentation for new features
-- Include tests for new functionality
-- Update the README.md if needed
-
-### Code of Conduct
-
-Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by its terms.
+- Follow the Epitech coding style (use `make style` to check)
+- Comment your code appropriately
+- Test new features before submitting
 
 ## 📧 Contact
 
@@ -240,6 +234,6 @@ Please note that this project is released with a Contributor Code of Conduct. By
 
 ---
 
-*Crafted with ❤️ and countless hours of coding* ✨
+*Made with ❤️ and lots of learning* ✨
 
-Made with passion for digital art and the C programming language. MyPaint represents the culmination of advanced graphics programming, user interface design, and software architecture principles.
+A first-year project exploring graphics programming, C language, and CSFML. This paint application demonstrates fundamental concepts in multimedia programming and user interface development.
